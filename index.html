@@ -8,90 +8,144 @@
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
   :root {
-    --red-dark: #7f0000;
-    --red: #b71c1c;
-    --red-mid: #c62828;
-    --red-light: #ffebee;
-    --red-soft: #ef9a9a;
-    --yellow: #ffd600;
-    --yellow-dark: #f9a825;
-    --yellow-light: #fff9c4;
-    --white: #ffffff;
-    --bg: #fdf3f3;
-    --border: #ffcdd2;
-    --muted: #78716c;
-    --text: #1a0a0a;
+    --red-dark: #7f0000; --red: #b71c1c; --red-mid: #c62828;
+    --red-light: #ffebee; --red-soft: #ef9a9a;
+    --yellow: #ffd600; --yellow-dark: #f9a825; --yellow-light: #fff9c4;
+    --bg: #fdf3f3; --border: #ffcdd2; --muted: #78716c; --text: #1a0a0a;
   }
   body { font-family: 'Noto Sans Telugu', 'Segoe UI', sans-serif; background: var(--bg); min-height: 100vh; padding-bottom: 50px; }
 
-  /* ===== COVER PAGE ===== */
-  .cover-page {
-    position: relative;
-    width: 100%;
-    max-width: 520px;
-    margin: 0 auto;
-    overflow: hidden;
+  /* ===== HERO SECTION ===== */
+  .hero {
+    position: relative; width: 100%; max-width: 520px;
+    margin: 0 auto; overflow: hidden;
   }
-  .cover-img {
-    width: 100%;
-    height: 220px;
-    object-fit: cover;
-    object-position: center 40%;
+  .hero-img {
+    width: 100%; height: 240px;
+    object-fit: cover; object-position: center 45%;
     display: block;
   }
-  .cover-overlay {
-    position: absolute;
-    bottom: 0; left: 0; right: 0;
-    background: linear-gradient(to top, rgba(127,0,0,0.95) 0%, rgba(127,0,0,0.7) 60%, transparent 100%);
-    padding: 18px 18px 22px;
-    text-align: center;
+  .hero-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(to bottom,
+      rgba(0,0,0,0.35) 0%,
+      rgba(127,0,0,0.55) 50%,
+      rgba(127,0,0,0.97) 100%);
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: flex-end;
+    padding: 16px 16px 20px; text-align: center;
   }
-  .cover-badge {
+  .hero-badge {
     display: inline-block;
-    background: rgba(255,214,0,0.2);
-    border: 1.5px solid rgba(255,214,0,0.5);
-    color: var(--yellow);
-    font-size: 11px; font-weight: 700;
-    letter-spacing: 2px; text-transform: uppercase;
-    padding: 4px 14px; border-radius: 20px;
-    margin-bottom: 8px;
+    background: rgba(255,214,0,0.18);
+    border: 1.5px solid rgba(255,214,0,0.6);
+    color: var(--yellow); font-size: 11px; font-weight: 700;
+    letter-spacing: 2px; padding: 3px 14px; border-radius: 20px;
+    margin-bottom: 7px;
   }
-  .cover-title {
-    font-family: 'Poppins', sans-serif;
-    font-size: 24px; font-weight: 900;
+  .hero-title {
+    font-family: 'Noto Sans Telugu', sans-serif;
+    font-size: 22px; font-weight: 900;
     color: var(--yellow);
-    text-shadow: 0 2px 10px rgba(0,0,0,0.5);
-    line-height: 1.2;
+    text-shadow: 0 2px 12px rgba(0,0,0,0.7);
+    line-height: 1.35; margin-bottom: 3px;
   }
-  .cover-sub {
+  .hero-sub {
     font-size: 13px; font-weight: 700;
-    color: rgba(255,255,255,0.9);
-    margin-top: 4px;
+    color: rgba(255,255,255,0.92); margin-bottom: 10px;
   }
-  .cover-date {
+  .hero-date {
     display: inline-flex; align-items: center; gap: 7px;
-    background: var(--yellow);
-    color: var(--red-dark);
+    background: var(--yellow); color: var(--red-dark);
     font-size: 13px; font-weight: 900;
-    padding: 7px 18px; border-radius: 30px;
-    margin-top: 10px;
-    box-shadow: 0 4px 16px rgba(255,214,0,0.45);
+    padding: 7px 20px; border-radius: 30px;
+    box-shadow: 0 4px 16px rgba(255,214,0,0.5);
+  }
+
+  /* ===== TOP COUNTDOWN (always visible) ===== */
+  .top-countdown {
+    max-width: 520px; margin: 0 auto;
+    background: linear-gradient(135deg, #3d0000, #7f0000, #3d0000);
+    padding: 14px 16px 16px; text-align: center;
+    border-bottom: 3px solid var(--yellow);
+  }
+  .top-cd-title {
+    font-size: 12px; font-weight: 800; color: rgba(255,255,255,0.8);
+    letter-spacing: 0.8px; margin-bottom: 10px;
+    font-family: 'Noto Sans Telugu', sans-serif;
+  }
+  .top-cd-boxes { display: flex; justify-content: center; gap: 8px; }
+  .cd-box {
+    background: rgba(255,255,255,0.1);
+    border: 1.5px solid rgba(255,214,0,0.4);
+    border-radius: 10px; padding: 8px 12px; min-width: 58px;
+  }
+  .cd-num {
+    font-family: 'Poppins', sans-serif;
+    font-size: 26px; font-weight: 900;
+    color: var(--yellow); line-height: 1;
+  }
+  .cd-label {
+    font-size: 10px; color: rgba(255,255,255,0.75);
+    font-weight: 700; margin-top: 3px;
+    font-family: 'Noto Sans Telugu', sans-serif;
+  }
+  .cd-done {
+    font-size: 18px; font-weight: 900;
+    color: var(--yellow); padding: 8px 0;
   }
 
   /* ===== STATS ===== */
   .stats-wrap {
     max-width: 520px; margin: 0 auto;
-    background: linear-gradient(90deg, #6d0000, #8b0000, #6d0000);
+    background: linear-gradient(90deg, #5a0000, #8b0000, #5a0000);
     display: grid; grid-template-columns: 1fr 1fr 1fr;
-    text-align: center; padding: 16px 0 18px;
-    border-bottom: 3px solid var(--yellow);
+    text-align: center; padding: 14px 0 16px;
+    border-bottom: 2px solid rgba(255,214,0,0.3);
   }
-  .stat-item { border-right: 1px solid rgba(255,255,255,0.12); }
+  .stat-item { border-right: 1px solid rgba(255,255,255,0.12); padding: 0 8px; }
   .stat-item:last-child { border-right: none; }
-  .stat-n { font-family: 'Poppins', sans-serif; font-size: 32px; font-weight: 900; line-height: 1; color: #fff; }
+  .stat-n { font-family: 'Poppins', sans-serif; font-size: 30px; font-weight: 900; color: #fff; line-height: 1; }
   .stat-n.g { color: #a5d6a7; }
   .stat-n.r { color: #ffcc80; }
-  .stat-l { font-size: 11px; color: rgba(255,255,255,0.65); margin-top: 4px; font-weight: 600; letter-spacing: 0.3px; }
+  .stat-l { font-size: 11px; color: rgba(255,255,255,0.65); margin-top: 4px; font-weight: 600;
+    font-family: 'Noto Sans Telugu', sans-serif; }
+
+  /* ===== LANDING ===== */
+  #landingSection {
+    max-width: 520px; margin: 0 auto;
+    background: #fff; padding: 28px 22px 34px;
+    text-align: center;
+    box-shadow: 0 8px 32px rgba(183,28,28,0.1);
+  }
+  .landing-title {
+    font-family: 'Noto Sans Telugu', sans-serif;
+    font-size: 17px; font-weight: 900; color: var(--red-dark);
+    margin-bottom: 6px; line-height: 1.4;
+  }
+  .landing-sub {
+    font-family: 'Noto Sans Telugu', sans-serif;
+    font-size: 13px; color: var(--muted); margin-bottom: 26px;
+  }
+  .landing-btns { display: flex; flex-direction: column; gap: 12px; }
+  .btn-register {
+    width: 100%; padding: 16px;
+    background: linear-gradient(135deg, var(--red), var(--red-dark));
+    color: var(--yellow); border: none; border-radius: 14px;
+    font-size: 17px; font-weight: 900; font-family: 'Noto Sans Telugu', sans-serif;
+    cursor: pointer; box-shadow: 0 6px 20px rgba(183,28,28,0.4);
+    transition: all 0.2s; letter-spacing: 0.3px;
+  }
+  .btn-register:hover { transform: translateY(-2px); box-shadow: 0 8px 26px rgba(183,28,28,0.5); }
+  .btn-already {
+    width: 100%; padding: 15px;
+    background: var(--yellow-light); color: var(--red-dark);
+    border: 2px solid var(--yellow-dark); border-radius: 14px;
+    font-size: 15px; font-weight: 800;
+    font-family: 'Noto Sans Telugu', sans-serif;
+    cursor: pointer; transition: all 0.2s;
+  }
+  .btn-already:hover { background: var(--yellow); transform: translateY(-2px); }
 
   /* ===== TABS ===== */
   .tabs-wrap {
@@ -101,11 +155,12 @@
     box-shadow: 0 2px 8px rgba(183,28,28,0.08);
   }
   .tab-btn {
-    flex: 1; padding: 14px 8px; text-align: center;
+    flex: 1; padding: 13px 8px; text-align: center;
     font-size: 14px; font-weight: 700; color: var(--muted);
     cursor: pointer; border: none; background: none;
     border-bottom: 3px solid transparent; margin-bottom: -2px;
-    transition: all 0.2s; font-family: inherit;
+    transition: all 0.2s;
+    font-family: 'Noto Sans Telugu', sans-serif;
   }
   .tab-btn.active { color: var(--red); border-bottom-color: var(--yellow); background: #fff8f8; }
 
@@ -113,92 +168,105 @@
   .main-card {
     max-width: 520px; margin: 0 auto;
     background: #fff; padding: 22px 20px 28px;
-    min-height: 320px;
+    min-height: 300px;
     box-shadow: 0 8px 32px rgba(183,28,28,0.1);
     border-radius: 0 0 18px 18px;
   }
 
   /* ===== FORM ===== */
   .form-group { margin-bottom: 18px; }
-  .form-label { display: block; font-size: 13px; font-weight: 800; color: var(--red); margin-bottom: 7px; letter-spacing: 0.3px; }
+  .form-label {
+    display: block; font-size: 14px; font-weight: 800;
+    color: var(--red); margin-bottom: 7px;
+    font-family: 'Noto Sans Telugu', sans-serif;
+  }
   .form-label .opt { font-weight: 500; color: var(--muted); font-size: 12px; }
   .form-label .req { color: var(--yellow-dark); }
   .form-input {
     width: 100%; padding: 12px 15px;
     border: 2px solid var(--border); border-radius: 10px;
-    font-size: 14px; font-family: inherit; color: var(--text);
-    outline: none; transition: all 0.2s; background: #fffafa;
+    font-size: 14px; font-family: 'Noto Sans Telugu', sans-serif;
+    color: var(--text); outline: none;
+    transition: all 0.2s; background: #fffafa;
   }
   .form-input:focus { border-color: var(--red-mid); box-shadow: 0 0 0 3px rgba(198,40,40,0.1); background: #fff; }
-  textarea.form-input { resize: none; height: 68px; }
-  .err-msg { color: var(--red-mid); font-size: 12px; margin-top: 5px; display: none; font-weight: 600; }
+  textarea.form-input { resize: none; height: 72px; }
+  .err-msg {
+    color: var(--red-mid); font-size: 12px; margin-top: 5px;
+    display: none; font-weight: 700;
+    font-family: 'Noto Sans Telugu', sans-serif;
+  }
   .err-msg.show { display: block; }
 
   .radio-row { display: flex; gap: 12px; flex-wrap: wrap; }
   .radio-opt {
     flex: 1; min-width: 130px;
     border: 2px solid var(--border); border-radius: 12px;
-    padding: 13px 14px; cursor: pointer;
-    font-size: 14px; font-weight: 700; text-align: center;
-    transition: all 0.2s; user-select: none;
-    background: #fffafa;
+    padding: 14px; cursor: pointer;
+    font-size: 15px; font-weight: 700; text-align: center;
+    transition: all 0.2s; user-select: none; background: #fffafa;
+    font-family: 'Noto Sans Telugu', sans-serif;
   }
-  .radio-opt.yes.sel { background: #e8f5e9; border-color: #2e7d32; color: #2e7d32; box-shadow: 0 2px 8px rgba(46,125,50,0.15); }
-  .radio-opt.no.sel { background: var(--red-light); border-color: var(--red-mid); color: var(--red-mid); box-shadow: 0 2px 8px rgba(198,40,40,0.15); }
+  .radio-opt.yes.sel { background: #e8f5e9; border-color: #2e7d32; color: #2e7d32; }
+  .radio-opt.no.sel { background: var(--red-light); border-color: var(--red-mid); color: var(--red-mid); }
 
   .extra-box { margin-top: 14px; display: none; }
   .extra-box.show { display: block; }
 
-  /* ===== LOCATION CARD ===== */
+  .guest-chips { display: flex; gap: 10px; flex-wrap: wrap; }
+  .guest-chip {
+    flex: 1; min-width: 80px;
+    border: 2px solid var(--border); border-radius: 10px;
+    padding: 10px 8px; cursor: pointer;
+    font-size: 13px; font-weight: 700; text-align: center;
+    transition: all 0.2s; user-select: none; background: #fffafa;
+    font-family: 'Noto Sans Telugu', sans-serif;
+  }
+  .guest-chip.sel { background: #e3f2fd; border-color: #1565c0; color: #1565c0; }
+
   .location-card {
-    max-width: 520px; margin: 0 auto;
     background: linear-gradient(135deg, #fff9e6, #fff3cd);
     border: 2px solid var(--yellow-dark);
-    border-radius: 14px;
-    padding: 18px 20px;
-    margin-top: 14px;
-    display: flex; flex-direction: column; gap: 10px;
+    border-radius: 14px; padding: 16px 18px;
+    margin-top: 14px; display: flex; flex-direction: column; gap: 10px;
   }
-  .loc-title { font-size: 14px; font-weight: 800; color: var(--red-dark); }
+  .loc-title {
+    font-size: 14px; font-weight: 800; color: var(--red-dark);
+    font-family: 'Noto Sans Telugu', sans-serif;
+  }
   .loc-map-btn {
     display: inline-flex; align-items: center; gap: 8px;
     background: linear-gradient(135deg, var(--red), var(--red-dark));
     color: var(--yellow); text-decoration: none;
-    font-size: 14px; font-weight: 800; font-family: inherit;
+    font-size: 14px; font-weight: 800;
+    font-family: 'Noto Sans Telugu', sans-serif;
     padding: 11px 20px; border-radius: 10px;
     box-shadow: 0 4px 14px rgba(183,28,28,0.35);
-    transition: all 0.2s; text-align: center; justify-content: center;
+    transition: all 0.2s; justify-content: center;
   }
-  .loc-map-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(183,28,28,0.45); }
+  .loc-map-btn:hover { transform: translateY(-2px); }
 
   .submit-btn {
     width: 100%; padding: 15px;
-    background: linear-gradient(135deg, var(--red) 0%, var(--red-dark) 100%);
-    color: var(--yellow);
-    border: none; border-radius: 12px;
-    font-size: 16px; font-weight: 900; font-family: inherit;
-    cursor: pointer;
-    box-shadow: 0 6px 20px rgba(183,28,28,0.4);
-    transition: all 0.2s; margin-top: 10px;
-    letter-spacing: 0.5px;
+    background: linear-gradient(135deg, var(--red), var(--red-dark));
+    color: var(--yellow); border: none; border-radius: 12px;
+    font-size: 17px; font-weight: 900;
+    font-family: 'Noto Sans Telugu', sans-serif;
+    cursor: pointer; box-shadow: 0 6px 20px rgba(183,28,28,0.4);
+    transition: all 0.2s; margin-top: 12px;
     position: relative; overflow: hidden;
   }
-  .submit-btn::after {
-    content: '';
-    position: absolute; top: 0; left: -100%;
-    width: 100%; height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.15), transparent);
-    transition: left 0.4s;
-  }
-  .submit-btn:hover::after { left: 100%; }
   .submit-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(183,28,28,0.5); }
   .submit-btn:disabled { opacity: 0.55; cursor: not-allowed; transform: none; }
 
   .success-banner {
-    display: none; background: linear-gradient(135deg, #e8f5e9, #f1f8e9);
+    display: none;
+    background: linear-gradient(135deg, #e8f5e9, #f1f8e9);
     border: 2px solid #4caf50; border-radius: 12px;
-    padding: 16px; text-align: center; color: #2e7d32;
-    font-size: 15px; font-weight: 700; margin-top: 14px;
+    padding: 18px; text-align: center; color: #2e7d32;
+    font-size: 16px; font-weight: 800; margin-top: 14px;
+    font-family: 'Noto Sans Telugu', sans-serif;
+    line-height: 1.6;
   }
   .success-banner.show { display: block; animation: pop 0.3s ease; }
   @keyframes pop { from{transform:scale(0.95);opacity:0} to{transform:scale(1);opacity:1} }
@@ -206,96 +274,128 @@
   /* ===== LIST ===== */
   .list-section { display: none; }
   .list-section.on { display: block; }
-
   .filter-row { display: flex; gap: 8px; margin-bottom: 16px; flex-wrap: wrap; }
   .filter-chip {
-    padding: 7px 16px; border-radius: 20px;
+    padding: 7px 14px; border-radius: 20px;
     border: 2px solid var(--border); background: #fff;
     font-size: 12px; font-weight: 700; color: var(--muted);
-    cursor: pointer; font-family: inherit; transition: all 0.2s;
+    cursor: pointer; font-family: 'Noto Sans Telugu', sans-serif;
+    transition: all 0.2s;
   }
   .filter-chip.active { background: var(--red); color: #fff; border-color: var(--red); }
-
   .entry-card {
     background: #fffafa; border: 1.5px solid #ffcdd2;
     border-radius: 12px; padding: 13px 15px;
     display: flex; align-items: flex-start; gap: 12px;
     margin-bottom: 10px; animation: fadeIn 0.3s ease;
-    transition: box-shadow 0.2s;
   }
-  .entry-card:hover { box-shadow: 0 4px 16px rgba(183,28,28,0.1); }
   @keyframes fadeIn { from{opacity:0;transform:translateY(8px)} to{opacity:1;transform:none} }
   .entry-card.coming { border-left: 4px solid #4caf50; }
   .entry-card.notcoming { border-left: 4px solid var(--red-soft); }
-
   .entry-num {
     min-width: 32px; height: 32px; border-radius: 50%;
     background: linear-gradient(135deg, var(--red), var(--red-dark));
     color: var(--yellow); font-size: 12px; font-weight: 900;
     display: flex; align-items: center; justify-content: center;
     font-family: 'Poppins', sans-serif; flex-shrink: 0;
-    box-shadow: 0 2px 6px rgba(183,28,28,0.3);
   }
   .entry-info { flex: 1; min-width: 0; }
-  .entry-name { font-size: 15px; font-weight: 800; color: var(--red-dark); }
-  .entry-meta { font-size: 12px; color: var(--muted); margin-top: 3px; line-height: 1.6; }
-  .entry-badge { font-size: 11px; font-weight: 800; padding: 4px 11px; border-radius: 20px; flex-shrink: 0; align-self: flex-start; white-space: nowrap; }
+  .entry-name {
+    font-size: 15px; font-weight: 800; color: var(--red-dark);
+    font-family: 'Noto Sans Telugu', sans-serif;
+  }
+  .entry-meta {
+    font-size: 12px; color: var(--muted); margin-top: 3px;
+    line-height: 1.7; font-family: 'Noto Sans Telugu', sans-serif;
+  }
+  .entry-badge {
+    font-size: 11px; font-weight: 800; padding: 4px 11px;
+    border-radius: 20px; flex-shrink: 0; align-self: flex-start;
+    white-space: nowrap; font-family: 'Noto Sans Telugu', sans-serif;
+  }
   .entry-badge.y { background: #e8f5e9; color: #2e7d32; }
   .entry-badge.n { background: var(--red-light); color: var(--red-mid); }
-
   .refresh-btn {
     width: 100%; padding: 11px;
     background: var(--yellow-light); border: 2px solid var(--yellow-dark);
     border-radius: 10px; font-size: 13px; font-weight: 700;
-    color: var(--red-dark); cursor: pointer; font-family: inherit;
+    color: var(--red-dark); cursor: pointer;
+    font-family: 'Noto Sans Telugu', sans-serif;
     margin-bottom: 16px; transition: all 0.2s;
   }
   .refresh-btn:hover { background: var(--yellow); }
-
-  .empty-state { text-align: center; padding: 44px 20px; color: var(--muted); }
-  .loading-state { text-align: center; padding: 32px; color: var(--muted); font-size: 13px; }
-
-  /* Guest chips */
-  .guest-chips { display: flex; gap: 10px; flex-wrap: wrap; }
-  .guest-chip {
-    flex: 1; min-width: 80px;
-    border: 2px solid var(--border); border-radius: 10px;
-    padding: 10px 10px; cursor: pointer;
-    font-size: 13px; font-weight: 700; text-align: center;
-    transition: all 0.2s; user-select: none; background: #fffafa;
+  .empty-state {
+    text-align: center; padding: 44px 20px; color: var(--muted);
+    font-family: 'Noto Sans Telugu', sans-serif;
   }
-  .guest-chip.sel { background: #e3f2fd; border-color: #1565c0; color: #1565c0; }
-
-  /* Footer */
-  .footer { max-width: 520px; margin: 16px auto 0; text-align: center; font-size: 11px; color: #aaa; padding: 0 20px; }
-
-  /* Info section divider */
+  .loading-state {
+    text-align: center; padding: 32px; color: var(--muted);
+    font-size: 13px; font-family: 'Noto Sans Telugu', sans-serif;
+  }
   .section-divider {
-    display: flex; align-items: center; gap: 10px;
-    margin: 20px 0 14px;
+    display: flex; align-items: center; gap: 10px; margin: 20px 0 14px;
   }
-  .section-divider span { font-size: 12px; font-weight: 800; color: var(--red); white-space: nowrap; }
+  .section-divider span {
+    font-size: 13px; font-weight: 800; color: var(--red);
+    white-space: nowrap; font-family: 'Noto Sans Telugu', sans-serif;
+  }
   .section-divider::before, .section-divider::after {
-    content: ''; flex: 1; height: 1.5px;
-    background: linear-gradient(90deg, transparent, var(--border));
+    content: ''; flex: 1; height: 1.5px; background: var(--border);
   }
-  .section-divider::before { background: linear-gradient(90deg, var(--border), transparent); }
+
+  /* Already registered */
+  #alreadySection {
+    max-width: 520px; margin: 0 auto;
+    background: #fff; padding: 22px 20px 30px;
+    box-shadow: 0 8px 32px rgba(183,28,28,0.1);
+    display: none;
+  }
+  .back-btn {
+    display: inline-flex; align-items: center; gap: 6px;
+    background: none; border: none; color: var(--red);
+    font-size: 14px; font-weight: 800; cursor: pointer;
+    font-family: 'Noto Sans Telugu', sans-serif;
+    margin-bottom: 18px; padding: 0;
+  }
+  .back-btn:hover { text-decoration: underline; }
+
+  #appSection { display: none; }
+  #appSection.show { display: block; }
+
+  .footer {
+    max-width: 520px; margin: 16px auto 0;
+    text-align: center; font-size: 11px; color: #aaa;
+    padding: 0 20px;
+    font-family: 'Noto Sans Telugu', sans-serif;
+  }
 </style>
 </head>
 <body>
 
-<!-- COVER PAGE with school photo -->
-<div class="cover-page">
-  <img class="cover-img" src="scc.jpg" alt="ZP High School" onerror="this.style.display='none'">
-  <div class="cover-overlay">
-    <div class="cover-badge">🏫 పాత విద్యార్థుల సమావేశం</div>
-    <div class="cover-title">10వ తరగతి Get Together</div>
-    <div class="cover-sub">2009 – 2010 బ్యాచ్ &nbsp;|&nbsp; ZP High School</div>
-    <div class="cover-date">📅 11 జూలై 2026 — ఆదివారం</div>
+<!-- ===== HERO ===== -->
+<div class="hero">
+  <img class="hero-img" src="scc.jpg" alt="ZP High School"
+       onerror="this.style.background='linear-gradient(135deg,#7f0000,#b71c1c)';this.style.height='240px';">
+  <div class="hero-overlay">
+    <div class="hero-badge">🏫 పాత విద్యార్థుల సమావేశం</div>
+    <div class="hero-title">2009–10 పదవ తరగతి బ్యాచ్<br>గెట్ టుగెదర్</div>
+    <div class="hero-sub">ZP High School &nbsp;|&nbsp; స్వాగతం 🙏</div>
+    <div class="hero-date">📅 12 జూలై 2026 — ఆదివారం</div>
   </div>
 </div>
 
-<!-- STATS -->
+<!-- ===== TOP COUNTDOWN (always visible) ===== -->
+<div class="top-countdown">
+  <div class="top-cd-title">⏳ కార్యక్రమానికి మిగిలిన సమయం — 12 జూలై 2026, ఉదయం 09:00</div>
+  <div class="top-cd-boxes" id="cdBoxes">
+    <div class="cd-box"><div class="cd-num" id="cdDays">--</div><div class="cd-label">రోజులు</div></div>
+    <div class="cd-box"><div class="cd-num" id="cdHours">--</div><div class="cd-label">గంటలు</div></div>
+    <div class="cd-box"><div class="cd-num" id="cdMins">--</div><div class="cd-label">నిమిషాలు</div></div>
+    <div class="cd-box"><div class="cd-num" id="cdSecs">--</div><div class="cd-label">సెకన్లు</div></div>
+  </div>
+</div>
+
+<!-- ===== STATS ===== -->
 <div class="stats-wrap">
   <div class="stat-item">
     <div class="stat-n" id="sTotal">0</div>
@@ -311,146 +411,185 @@
   </div>
 </div>
 
-<!-- TABS -->
-<div class="tabs-wrap">
-  <button class="tab-btn active" id="tForm" onclick="gotoTab('form')">📝 నమోదు చేసుకోండి</button>
-  <button class="tab-btn" id="tList" onclick="gotoTab('list')">👥 లిస్టు చూడండి (<span id="tCount">0</span>)</button>
+<!-- ===== LANDING ===== -->
+<div id="landingSection">
+  <div class="landing-title">🎉 స్వాగతం! మీరు ఏమి చేయాలనుకుంటున్నారు?</div>
+  <div class="landing-sub">దయచేసి క్రింది ఆప్షన్ ఎంచుకోండి</div>
+  <div class="landing-btns">
+    <button class="btn-register" onclick="showRegister()">📝 నమోదు చేసుకోండి</button>
+    <button class="btn-already" onclick="showAlready()">✅ ఇది వరకూ నమోదు అయ్యాను — జాబితా చూడండి</button>
+  </div>
 </div>
 
-<!-- MAIN CARD -->
-<div class="main-card">
+<!-- ===== ALREADY REGISTERED ===== -->
+<div id="alreadySection">
+  <button class="back-btn" onclick="showLanding()">← వెనక్కి వెళ్ళండి</button>
+  <div class="filter-row">
+    <button class="filter-chip active" id="fAll2" onclick="setFilter('all','2')">అందరూ</button>
+    <button class="filter-chip" id="fYes2" onclick="setFilter('yes','2')">వస్తున్నారు ✅</button>
+    <button class="filter-chip" id="fNo2" onclick="setFilter('no','2')">రావడం లేదు ❌</button>
+  </div>
+  <button class="refresh-btn" onclick="loadData()">🔄 Refresh చేయండి</button>
+  <div id="entryList2"><div class="loading-state">⏳ లోడ్ అవుతోంది...</div></div>
+</div>
 
-  <!-- FORM -->
-  <div id="formSec">
+<!-- ===== APP (register flow) ===== -->
+<div id="appSection">
 
-    <!-- Basic Info -->
-    <div class="form-group">
-      <label class="form-label">మీ పేరు <span class="req">*</span></label>
-      <input class="form-input" id="iName" type="text" placeholder="మీ పూర్తి పేరు రాయండి" autocomplete="off">
-      <div class="err-msg" id="eName">⚠️ పేరు తప్పనిసరి</div>
-    </div>
+  <div class="tabs-wrap">
+    <button class="tab-btn active" id="tForm" onclick="gotoTab('form')">📝 నమోదు చేసుకోండి</button>
+    <button class="tab-btn" id="tList" onclick="gotoTab('list')">👥 లిస్టు చూడండి (<span id="tCount">0</span>)</button>
+  </div>
 
-    <div class="form-group">
-      <label class="form-label">ఫోన్ నంబర్ <span class="req">*</span></label>
-      <input class="form-input" id="iPhone" type="tel" placeholder="మీ ఫోన్ నంబర్ రాయండి">
-      <div class="err-msg" id="ePhone">⚠️ ఫోన్ నంబర్ తప్పనిసరి</div>
-    </div>
+  <div class="main-card">
 
-    <div class="form-group">
-      <label class="form-label">ప్రస్తుతం ఉంటున్న గ్రామం / ఊరు <span class="req">*</span></label>
-      <input class="form-input" id="iVillage" type="text" placeholder="మీ ఊరు పేరు రాయండి" autocomplete="off">
-      <div class="err-msg" id="eVillage">⚠️ గ్రామం తప్పనిసరి</div>
-    </div>
-
-    <div class="form-group">
-      <label class="form-label">10వ తరగతిలో మీ రోల్ నంబర్ <span class="req">*</span></label>
-      <input class="form-input" id="iRoll" type="text" placeholder="ఉదా: 1234 లేదా A-25" autocomplete="off">
-      <div class="err-msg" id="eRoll">⚠️ రోల్ నంబర్ తప్పనిసరి</div>
-    </div>
-
-    <div class="section-divider"><span>📋 సమావేశం వివరాలు</span></div>
-
-    <!-- Coming? -->
-    <div class="form-group">
-      <label class="form-label">సమావేశానికి వస్తున్నారా? <span class="req">*</span></label>
-      <div class="radio-row">
-        <div class="radio-opt yes" id="lYes" onclick="pickComing('yes')">✅ వస్తున్నాను</div>
-        <div class="radio-opt no" id="lNo" onclick="pickComing('no')">❌ రావడం లేదు</div>
+    <!-- FORM -->
+    <div id="formSec">
+      <div class="form-group">
+        <label class="form-label">మీ పేరు <span class="req">*</span></label>
+        <input class="form-input" id="iName" type="text" placeholder="మీ పూర్తి పేరు రాయండి" autocomplete="off">
+        <div class="err-msg" id="eName">⚠️ పేరు తప్పనిసరి</div>
       </div>
-      <div class="err-msg" id="eComing">⚠️ ఒప్షన్ ఎంచుకోండి</div>
+      <div class="form-group">
+        <label class="form-label">ఫోన్ నంబర్ <span class="req">*</span></label>
+        <input class="form-input" id="iPhone" type="tel" placeholder="మీ ఫోన్ నంబర్ రాయండి">
+        <div class="err-msg" id="ePhone">⚠️ ఫోన్ నంబర్ తప్పనిసరి</div>
+      </div>
+      <div class="form-group">
+        <label class="form-label">ప్రస్తుతం ఉంటున్న గ్రామం / ఊరు <span class="req">*</span></label>
+        <input class="form-input" id="iVillage" type="text" placeholder="మీ ఊరు పేరు రాయండి" autocomplete="off">
+        <div class="err-msg" id="eVillage">⚠️ గ్రామం తప్పనిసరి</div>
+      </div>
+      <div class="form-group">
+        <label class="form-label">10వ తరగతిలో మీ రోల్ నంబర్ <span class="req">*</span></label>
+        <input class="form-input" id="iRoll" type="text" placeholder="ఉదా: 1234 లేదా A-25" autocomplete="off">
+        <div class="err-msg" id="eRoll">⚠️ రోల్ నంబర్ తప్పనిసరి</div>
+      </div>
 
-      <!-- If YES: guests -->
-      <div class="extra-box" id="guestBox">
-        <label class="form-label" style="margin-top:6px;">వెంట ఎవరైనా తీసుకువస్తున్నారా? <span class="opt">(ఒకటి కంటే ఎక్కువ ఎంచుకోవచ్చు)</span></label>
-        <div class="guest-chips">
-          <div class="guest-chip" id="gc_children" onclick="toggleGuest('gc_children','పిల్లలు')">👶 పిల్లలు</div>
-          <div class="guest-chip" id="gc_husband" onclick="toggleGuest('gc_husband','భర్త')">👨 భర్త</div>
-          <div class="guest-chip" id="gc_wife" onclick="toggleGuest('gc_wife','భార్య')">👩 భార్య</div>
-          <div class="guest-chip" id="gc_none" onclick="toggleGuest('gc_none','ఎవరూ లేరు')">🙋 ఒంటరిగా వస్తాను</div>
+      <div class="section-divider"><span>📋 సమావేశం వివరాలు</span></div>
+
+      <div class="form-group">
+        <label class="form-label">సమావేశానికి వస్తున్నారా? <span class="req">*</span></label>
+        <div class="radio-row">
+          <div class="radio-opt yes" id="lYes" onclick="pickComing('yes')">✅ వస్తున్నాను</div>
+          <div class="radio-opt no"  id="lNo"  onclick="pickComing('no')">❌ రావడం లేదు</div>
+        </div>
+        <div class="err-msg" id="eComing">⚠️ ఒప్షన్ ఎంచుకోండి</div>
+
+        <!-- YES → guests -->
+        <div class="extra-box" id="guestBox">
+          <label class="form-label" style="margin-top:6px;">వెంట ఎవరైనా తీసుకువస్తున్నారా? <span class="opt">(ఒకటి కంటే ఎక్కువ ఎంచుకోవచ్చు)</span></label>
+          <div class="guest-chips">
+            <div class="guest-chip" id="gc_children" onclick="toggleGuest('gc_children','పిల్లలు')">👶 పిల్లలు</div>
+            <div class="guest-chip" id="gc_husband"  onclick="toggleGuest('gc_husband','భర్త')">👨 భర్త</div>
+            <div class="guest-chip" id="gc_wife"     onclick="toggleGuest('gc_wife','భార్య')">👩 భార్య</div>
+            <div class="guest-chip" id="gc_none"     onclick="toggleGuest('gc_none','ఒంటరిగా వస్తాను')">🙋 ఒంటరిగా వస్తాను</div>
+          </div>
+        </div>
+
+        <!-- NO → reason -->
+        <div class="extra-box" id="reasonBox">
+          <label class="form-label" style="margin-top:6px;">రావడం లేకపోవడానికి కారణం <span class="req">*</span></label>
+          <textarea class="form-input" id="iReason" placeholder="కారణం రాయండి..."></textarea>
+          <div class="err-msg" id="eReason">⚠️ కారణం తప్పనిసరి</div>
         </div>
       </div>
 
-      <!-- If NO: reason -->
-      <div class="extra-box" id="reasonBox">
-        <label class="form-label" style="margin-top:6px;">రావడం లేకపోవడానికి కారణం <span class="req">*</span></label>
-        <textarea class="form-input" id="iReason" placeholder="కారణం రాయండి..."></textarea>
-        <div class="err-msg" id="eReason">⚠️ కారణం తప్పనిసరి</div>
+      <div class="form-group">
+        <label class="form-label">రావడానికి మీకు ఏమైనా సహాయం కావాలా? <span class="opt">(ఐచ్ఛికం)</span></label>
+        <textarea class="form-input" id="iHelp" placeholder="ఉదా: వాహన సదుపాయం, దిశా నిర్దేశం..."></textarea>
+      </div>
+
+      <div class="location-card">
+        <div class="loc-title">📍 సమావేశం స్థలం — దిగువ లొకేషన్ చూడండి</div>
+        <a class="loc-map-btn" href="https://maps.app.goo.gl/SyStDmMa5oWDUjCU7" target="_blank" rel="noopener">
+          🗺️ Google Maps లో చూడండి
+        </a>
+      </div>
+
+      <button class="submit-btn" id="submitBtn" onclick="doSubmit()">✅ Submit చేయండి</button>
+      <div class="success-banner" id="successBanner">
+        🎉 మీ వివరాలు విజయవంతంగా నమోదయ్యాయి!<br>
+        <span style="font-size:14px;font-weight:600;">👥 "లిస్టు చూడండి" tab లో మీ పేరు చూడవచ్చు.</span>
       </div>
     </div>
 
-    <!-- Help question -->
-    <div class="form-group">
-      <label class="form-label">రావడానికి మీకు ఏమైనా సహాయం కావాలా? <span class="opt">(ఐచ్ఛికం)</span></label>
-      <textarea class="form-input" id="iHelp" placeholder="ఉదా: వాహన సదుపాయం, దిశా నిర్దేశం మొదలైనవి..."></textarea>
-    </div>
-
-    <!-- Location -->
-    <div class="location-card">
-      <div class="loc-title">📍 సమావేశం స్థలం — దిగువ లొకేషన్ చూడండి</div>
-      <a class="loc-map-btn" href="https://maps.app.goo.gl/SyStDmMa5oWDUjCU7" target="_blank" rel="noopener">
-        🗺️ Google Maps లో చూడండి
-      </a>
-    </div>
-
-    <button class="submit-btn" id="submitBtn" onclick="doSubmit()" style="margin-top:18px;">✅ Submit చేయండి</button>
-    <div class="success-banner" id="successBanner">
-      🎉 మీ వివరాలు విజయవంతంగా నమోదయ్యాయి!<br>
-      <span style="font-size:13px;font-weight:600;">"లిస్టు చూడండి" tab లో మీ పేరు చూడవచ్చు.</span>
+    <!-- LIST -->
+    <div id="listSec" class="list-section">
+      <div class="filter-row">
+        <button class="filter-chip active" id="fAll" onclick="setFilter('all','1')">అందరూ</button>
+        <button class="filter-chip" id="fYes" onclick="setFilter('yes','1')">వస్తున్నారు ✅</button>
+        <button class="filter-chip" id="fNo"  onclick="setFilter('no','1')">రావడం లేదు ❌</button>
+      </div>
+      <button class="refresh-btn" onclick="loadData()">🔄 Refresh చేయండి</button>
+      <div id="entryList"><div class="loading-state">⏳ లోడ్ అవుతోంది...</div></div>
     </div>
   </div>
-
-  <!-- LIST -->
-  <div id="listSec" class="list-section">
-    <button class="refresh-btn" onclick="loadData()">🔄 Refresh చేయండి</button>
-    <div class="filter-row">
-      <button class="filter-chip active" id="fAll" onclick="setFilter('all')">అందరూ</button>
-      <button class="filter-chip" id="fYes" onclick="setFilter('yes')">వస్తున్నారు ✅</button>
-      <button class="filter-chip" id="fNo" onclick="setFilter('no')">రావడం లేదు ❌</button>
-    </div>
-    <div id="entryList"><div class="loading-state">⏳ లోడ్ అవుతోంది...</div></div>
-  </div>
-
 </div>
 
 <div class="footer">© 2009-2010 బ్యాచ్ Get Together Committee</div>
 
 <script>
-const API = "https://script.google.com/macros/s/AKfycbxriP4TWbwl6kWpmQqgjKWFYvRGu-pYBR92OqRSyKXTvNGrcxTzhjZJIDpW4ba3iJyu/exec;
+const API = "https://script.google.com/macros/s/AKfycbxriP4TWbwl6kWpmQqgjKWFYvRGu-pYBR92OqRSyKXTvNGrcxTzhjZJIDpW4ba3iJyu/exec";
 let allData = [], comingVal = null, filterVal = 'all';
 let selectedGuests = new Set();
 
-function toggleGuest(id, label) {
-  // "ఒంటరిగా" is exclusive
-  if (id === 'gc_none') {
-    selectedGuests.clear();
-    selectedGuests.add(label);
-    ['gc_children','gc_husband','gc_wife'].forEach(g => document.getElementById(g).classList.remove('sel'));
-    document.getElementById('gc_none').classList.add('sel');
-  } else {
-    selectedGuests.delete('ఒంటరిగా వస్తాను');
-    document.getElementById('gc_none').classList.remove('sel');
-    if (selectedGuests.has(label)) {
-      selectedGuests.delete(label);
-      document.getElementById(id).classList.remove('sel');
-    } else {
-      selectedGuests.add(label);
-      document.getElementById(id).classList.add('sel');
+/* ===== COUNTDOWN ===== */
+function startCountdown() {
+  function tick() {
+    const target = new Date('2026-07-12T09:00:00+05:30').getTime();
+    const diff = target - Date.now();
+    if (diff <= 0) {
+      document.getElementById('cdBoxes').innerHTML = '<div class="cd-done">🎉 సమావేశం ప్రారంభమైంది!</div>';
+      return;
     }
+    const d = Math.floor(diff / 86400000);
+    const h = Math.floor((diff % 86400000) / 3600000);
+    const m = Math.floor((diff % 3600000) / 60000);
+    const s = Math.floor((diff % 60000) / 1000);
+    document.getElementById('cdDays').textContent  = String(d).padStart(2,'0');
+    document.getElementById('cdHours').textContent = String(h).padStart(2,'0');
+    document.getElementById('cdMins').textContent  = String(m).padStart(2,'0');
+    document.getElementById('cdSecs').textContent  = String(s).padStart(2,'0');
   }
+  tick();
+  setInterval(tick, 1000);
+}
+startCountdown();
+
+/* ===== NAVIGATION ===== */
+function showLanding() {
+  document.getElementById('landingSection').style.display = '';
+  document.getElementById('alreadySection').style.display = 'none';
+  document.getElementById('appSection').classList.remove('show');
+}
+function showRegister() {
+  document.getElementById('landingSection').style.display = 'none';
+  document.getElementById('alreadySection').style.display = 'none';
+  document.getElementById('appSection').classList.add('show');
+  loadSilent();
+}
+function showAlready() {
+  document.getElementById('landingSection').style.display = 'none';
+  document.getElementById('appSection').classList.remove('show');
+  document.getElementById('alreadySection').style.display = '';
+  loadData('2');
 }
 
-async function loadData() {
-  document.getElementById('entryList').innerHTML = '<div class="loading-state">⏳ లోడ్ అవుతోంది...</div>';
+/* ===== DATA ===== */
+async function loadData(listId) {
+  const id = listId || '1';
+  const el = document.getElementById('entryList' + (id==='1'?'':'2'));
+  if (el) el.innerHTML = '<div class="loading-state">⏳ లోడ్ అవుతోంది...</div>';
   try {
     const res = await fetch(API + "?t=" + Date.now());
     const json = await res.json();
     allData = json.entries || [];
     updateStats(); renderList();
   } catch(e) {
-    document.getElementById('entryList').innerHTML = '<div class="empty-state">⚠️ లోడ్ కాలేదు. Refresh చేయండి.</div>';
+    if (el) el.innerHTML = '<div class="empty-state">⚠️ లోడ్ కాలేదు. Refresh చేయండి.</div>';
   }
 }
-
 async function loadSilent() {
   try {
     const res = await fetch(API + "?t=" + Date.now());
@@ -459,53 +598,52 @@ async function loadSilent() {
     updateStats();
   } catch(e) {}
 }
-
 function updateStats() {
-  const total = allData.length;
+  const total  = allData.length;
   const coming = allData.filter(e => e.coming === 'yes').length;
-  document.getElementById('sTotal').textContent = total;
+  document.getElementById('sTotal').textContent  = total;
   document.getElementById('sComing').textContent = coming;
-  document.getElementById('sNot').textContent = total - coming;
-  document.getElementById('tCount').textContent = total;
+  document.getElementById('sNot').textContent    = total - coming;
+  const tc = document.getElementById('tCount'); if (tc) tc.textContent = total;
 }
-
 function renderList() {
-  const el = document.getElementById('entryList');
   let list = allData;
-  if (filterVal === 'yes') list = allData.filter(e => e.coming === 'yes');
-  if (filterVal === 'no') list = allData.filter(e => e.coming === 'no');
-  if (list.length === 0) {
-    el.innerHTML = '<div class="empty-state"><div style="font-size:44px;margin-bottom:10px;">📋</div>ఇంకా ఎవరూ నమోదు చేసుకోలేదు</div>';
-    return;
-  }
-  el.innerHTML = list.map((e,i) => `
-    <div class="entry-card ${e.coming==='yes'?'coming':'notcoming'}">
-      <div class="entry-num">${i+1}</div>
-      <div class="entry-info">
-        <div class="entry-name">${esc(e.name)}</div>
-        <div class="entry-meta">
-          📍 ${esc(e.village)}${e.phone?' &nbsp;📞 '+esc(e.phone):''}
-          ${e.roll?' &nbsp;🔢 రోల్: '+esc(e.roll):''}
-          ${e.coming==='yes'&&e.guests?' <br>👥 '+esc(e.guests):''}
-          ${e.coming==='no'&&e.reason?'<br>💬 '+esc(e.reason):''}
-          ${e.help?'<br>🆘 సహాయం: '+esc(e.help):''}
+  if (filterVal==='yes') list = allData.filter(e=>e.coming==='yes');
+  if (filterVal==='no')  list = allData.filter(e=>e.coming==='no');
+  const html = list.length===0
+    ? '<div class="empty-state"><div style="font-size:44px;margin-bottom:10px">📋</div>ఇంకా ఎవరూ నమోదు చేసుకోలేదు</div>'
+    : list.map((e,i)=>`
+      <div class="entry-card ${e.coming==='yes'?'coming':'notcoming'}">
+        <div class="entry-num">${i+1}</div>
+        <div class="entry-info">
+          <div class="entry-name">${esc(e.name)}</div>
+          <div class="entry-meta">
+            📍 ${esc(e.village)}${e.phone?' &nbsp;📞 '+esc(e.phone):''}
+            ${e.roll?' &nbsp;🔢 రోల్: '+esc(e.roll):''}
+            ${e.coming==='yes'&&e.guests?'<br>👥 '+esc(e.guests):''}
+            ${e.coming==='no'&&e.reason?'<br>💬 '+esc(e.reason):''}
+            ${e.help?'<br>🆘 సహాయం: '+esc(e.help):''}
+          </div>
         </div>
-      </div>
-      <div class="entry-badge ${e.coming==='yes'?'y':'n'}">${e.coming==='yes'?'✅ వస్తారు':'❌ రారు'}</div>
-    </div>`).join('');
+        <div class="entry-badge ${e.coming==='yes'?'y':'n'}">${e.coming==='yes'?'✅ వస్తారు':'❌ రారు'}</div>
+      </div>`).join('');
+  ['entryList','entryList2'].forEach(id=>{
+    const el=document.getElementById(id); if(el) el.innerHTML=html;
+  });
 }
-
 function esc(s){ return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
 
+/* ===== TABS ===== */
 function gotoTab(tab) {
   const isForm = tab==='form';
   document.getElementById('tForm').classList.toggle('active', isForm);
   document.getElementById('tList').classList.toggle('active', !isForm);
-  document.getElementById('formSec').style.display = isForm ? '' : 'none';
+  document.getElementById('formSec').style.display = isForm?'':'none';
   document.getElementById('listSec').classList.toggle('on', !isForm);
-  if (!isForm) loadData();
+  if (!isForm) loadData('1');
 }
 
+/* ===== FORM ===== */
 function pickComing(val) {
   comingVal = val;
   document.getElementById('lYes').classList.toggle('sel', val==='yes');
@@ -514,7 +652,21 @@ function pickComing(val) {
   document.getElementById('reasonBox').classList.toggle('show', val==='no');
   document.getElementById('eComing').classList.remove('show');
 }
-
+function toggleGuest(id, label) {
+  if (id==='gc_none') {
+    selectedGuests.clear(); selectedGuests.add('ఒంటరిగా వస్తాను');
+    ['gc_children','gc_husband','gc_wife'].forEach(g=>document.getElementById(g).classList.remove('sel'));
+    document.getElementById('gc_none').classList.add('sel');
+  } else {
+    selectedGuests.delete('ఒంటరిగా వస్తాను');
+    document.getElementById('gc_none').classList.remove('sel');
+    if (selectedGuests.has(label)) {
+      selectedGuests.delete(label); document.getElementById(id).classList.remove('sel');
+    } else {
+      selectedGuests.add(label); document.getElementById(id).classList.add('sel');
+    }
+  }
+}
 async function doSubmit() {
   const name    = document.getElementById('iName').value.trim();
   const phone   = document.getElementById('iPhone').value.trim();
@@ -524,52 +676,53 @@ async function doSubmit() {
   const help    = document.getElementById('iHelp').value.trim();
   const guests  = [...selectedGuests].join(', ');
 
-  ['eName','ePhone','eVillage','eRoll','eComing','eReason'].forEach(id => document.getElementById(id).classList.remove('show'));
-  let ok = true;
-  if (!name)     { document.getElementById('eName').classList.add('show'); ok=false; }
-  if (!phone)    { document.getElementById('ePhone').classList.add('show'); ok=false; }
-  if (!village)  { document.getElementById('eVillage').classList.add('show'); ok=false; }
-  if (!roll)     { document.getElementById('eRoll').classList.add('show'); ok=false; }
-  if (!comingVal){ document.getElementById('eComing').classList.add('show'); ok=false; }
-  if (comingVal==='no' && !reason){ document.getElementById('eReason').classList.add('show'); ok=false; }
-  if (!ok) return;
+  ['eName','ePhone','eVillage','eRoll','eComing','eReason'].forEach(id=>document.getElementById(id).classList.remove('show'));
+  let ok=true;
+  if(!name)    {document.getElementById('eName').classList.add('show');ok=false;}
+  if(!phone)   {document.getElementById('ePhone').classList.add('show');ok=false;}
+  if(!village) {document.getElementById('eVillage').classList.add('show');ok=false;}
+  if(!roll)    {document.getElementById('eRoll').classList.add('show');ok=false;}
+  if(!comingVal){document.getElementById('eComing').classList.add('show');ok=false;}
+  if(comingVal==='no'&&!reason){document.getElementById('eReason').classList.add('show');ok=false;}
+  if(!ok) return;
 
-  const btn = document.getElementById('submitBtn');
-  btn.disabled = true; btn.textContent = '⏳ సేవ్ అవుతోంది...';
-
+  const btn=document.getElementById('submitBtn');
+  btn.disabled=true; btn.textContent='⏳ సేవ్ అవుతోంది...';
   try {
-    await fetch(API, {
-      method: 'POST', mode: 'no-cors',
-      headers: { 'Content-Type': 'text/plain' },
-      body: JSON.stringify({
-        name, phone, village, roll,
-        coming: comingVal,
-        guests: comingVal==='yes' ? guests : '',
-        reason: comingVal==='no' ? reason : '',
-        help
-      })
+    await fetch(API,{
+      method:'POST', mode:'no-cors',
+      headers:{'Content-Type':'text/plain'},
+      body:JSON.stringify({name,phone,village,roll,
+        coming:comingVal,
+        guests:comingVal==='yes'?guests:'',
+        reason:comingVal==='no'?reason:'',
+        help})
     });
-    await new Promise(r => setTimeout(r, 2000));
+    await new Promise(r=>setTimeout(r,2000));
     await loadSilent();
-    ['iName','iPhone','iVillage','iRoll','iReason','iHelp'].forEach(id => document.getElementById(id).value='');
-    comingVal = null;
-    selectedGuests.clear();
-    ['lYes','lNo','gc_children','gc_husband','gc_wife','gc_none'].forEach(id => document.getElementById(id).classList.remove('sel'));
+    ['iName','iPhone','iVillage','iRoll','iReason','iHelp'].forEach(id=>document.getElementById(id).value='');
+    comingVal=null; selectedGuests.clear();
+    ['lYes','lNo','gc_children','gc_husband','gc_wife','gc_none'].forEach(id=>document.getElementById(id).classList.remove('sel'));
     document.getElementById('guestBox').classList.remove('show');
     document.getElementById('reasonBox').classList.remove('show');
     document.getElementById('successBanner').classList.add('show');
-    setTimeout(()=> document.getElementById('successBanner').classList.remove('show'), 6000);
+    setTimeout(()=>document.getElementById('successBanner').classList.remove('show'),7000);
   } catch(e) {
     alert('⚠️ Network error. మళ్ళీ ప్రయత్నించండి.');
   }
   btn.disabled=false; btn.textContent='✅ Submit చేయండి';
 }
-
-function setFilter(f) {
-  filterVal = f;
-  document.getElementById('fAll').classList.toggle('active', f==='all');
-  document.getElementById('fYes').classList.toggle('active', f==='yes');
-  document.getElementById('fNo').classList.toggle('active', f==='no');
+function setFilter(f, listId) {
+  filterVal=f;
+  if(listId==='1'){
+    ['fAll','fYes','fNo'].forEach(id=>document.getElementById(id)&&document.getElementById(id).classList.remove('active'));
+    const map={all:'fAll',yes:'fYes',no:'fNo'};
+    document.getElementById(map[f])&&document.getElementById(map[f]).classList.add('active');
+  } else {
+    ['fAll2','fYes2','fNo2'].forEach(id=>document.getElementById(id)&&document.getElementById(id).classList.remove('active'));
+    const map={all:'fAll2',yes:'fYes2',no:'fNo2'};
+    document.getElementById(map[f])&&document.getElementById(map[f]).classList.add('active');
+  }
   renderList();
 }
 
