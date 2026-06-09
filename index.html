@@ -776,28 +776,38 @@
         <textarea class="form-input" id="iHelp" placeholder="ఉదా: వాహన సదుపాయం, దిశా నిర్దేశం..."></textarea>
       </div>
 
-      <!-- RESPONSIBILITY SECTION (hidden for now) -->
-      <div class="section-divider" style="display:none;"><span>🙋 నేను ఈ బాధ్యత తీసుకుంటాను</span></div>
-      <div class="resp-card" style="display:none;">
-        <div class="resp-intro">మీకు ఏదైనా బాధ్యత తీసుకోవాలంటే క్రింది వాటిలో ఎంచుకోండి <span style="color:var(--muted);font-weight:500;font-size:12px;">(ఐచ్ఛికం — ఒకటి కంటే ఎక్కువ ఎంచుకోవచ్చు)</span></div>
-        <div class="resp-grid" id="respGrid">
-          <label class="resp-item"><input type="checkbox" value="Tent, Chairs, Stage"><span>🎪 టెంట్, కుర్చీలు మరియు స్టేజ్ (వేదిక)</span></label>
-          <label class="resp-item"><input type="checkbox" value="Sound System"><span>🎤 సౌండ్ సిస్టం (మైక్ సెట్)</span></label>
-          <label class="resp-item"><input type="checkbox" value="Cloth Badges"><span>🏷️ క్లాత్ బ్యాడ్జీలు</span></label>
-          <label class="resp-item hidden-resp"><input type="checkbox" value="Flex & Invitations"><span>📋 ఫ్లెక్సీలు మరియు ఆహ్వాన పత్రికలు</span></label>
-          <label class="resp-item hidden-resp"><input type="checkbox" value="Snacks, Tea, Water Bottles"><span>🍵 స్నాక్స్, టీ మరియు మంచినీళ్ల బాటిళ్లు</span></label>
-          <label class="resp-item hidden-resp"><input type="checkbox" value="Shawls"><span>🧣 శాలువాలు</span></label>
-          <label class="resp-item hidden-resp"><input type="checkbox" value="Garlands"><span>💐 పూలమాలలు (దండలు)</span></label>
-          <label class="resp-item hidden-resp"><input type="checkbox" value="Mementos or Return Gifts"><span>🎁 మెమెంటోలు లేదా రిటర్న్ గిఫ్ట్‌లు</span></label>
-          <label class="resp-item hidden-resp"><input type="checkbox" value="Bouquets"><span>🌸 పూల గుచ్ఛాలు</span></label>
-          <label class="resp-item hidden-resp"><input type="checkbox" value="Anchoring"><span>🎙️ యాంకరింగ్ (స్టేజ్ పైకి ఆహ్వానించే వ్యక్తి)</span></label>
-          <label class="resp-item hidden-resp"><input type="checkbox" value="Family & Kids Coordinator"><span>👨‍👩‍👧 ఫ్యామిలీ &amp; కిడ్స్ కోఆర్డినేటర్</span></label>
-          <label class="resp-item hidden-resp"><input type="checkbox" value="Finance Coordinator"><span>💰 కోశాధికారి (ఫైనాన్స్ ఇన్-ఛార్జ్)</span></label>
-          <label class="resp-item hidden-resp"><input type="checkbox" value="Guest Coordinator"><span>🤝 అతిథి సమన్వయకర్త</span></label>
-          <label class="resp-item hidden-resp"><input type="checkbox" value="Food In charge (Meals)"><span>🍽️ భోజనాలు &amp; స్నాక్స్ ఇన్-ఛార్జ్</span></label>
-          <label class="resp-item hidden-resp"><input type="checkbox" value="Media in charge (Photos & Video)"><span>📸 ఫోటోలు మరియు వీడియో ఇన్-ఛార్జ్</span></label>
+      <!-- RESPONSIBILITY SECTION -->
+      <div class="section-divider"><span>🙋 భాద్యతలు</span></div>
+      <div class="resp-card">
+
+        <!-- Accordion Toggle Button -->
+        <button id="respToggleBtn" onclick="toggleRespSection()" style="width:100%;padding:14px 18px;background:linear-gradient(135deg,#6a1b9a,#4a148c);color:#fff;border:none;border-radius:12px;font-family:'Noto Sans Telugu',sans-serif;font-size:14px;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:space-between;box-shadow:0 4px 15px rgba(106,27,154,0.35);">
+          <span>✋ నేను ఈ క్రింది భాద్యతలను తీసుకుంటాను</span>
+          <span id="respToggleArrow" style="font-size:18px;transition:transform 0.3s;">▼</span>
+        </button>
+
+        <!-- Collapsible checklist -->
+        <div id="respCollapse" style="display:none;margin-top:10px;">
+          <div class="resp-intro">మీకు ఏదైనా బాధ్యత తీసుకోవాలంటే క్రింది వాటిలో ఎంచుకోండి <span style="color:var(--muted);font-weight:500;font-size:12px;">(ఐచ్ఛికం — ఒకటి కంటే ఎక్కువ ఎంచుకోవచ్చు)</span></div>
+          <div class="resp-grid" id="respGrid">
+            <label class="resp-item"><input type="checkbox" value="Tent, Chairs, Stage"><span>🎪 టెంట్, కుర్చీలు మరియు స్టేజ్ (వేదిక)</span></label>
+            <label class="resp-item"><input type="checkbox" value="Sound System"><span>🎤 సౌండ్ సిస్టం (మైక్ సెట్)</span></label>
+            <label class="resp-item"><input type="checkbox" value="Cloth Badges"><span>🏷️ క్లాత్ బ్యాడ్జీలు</span></label>
+            <label class="resp-item"><input type="checkbox" value="Flex &amp; Invitations"><span>📋 ఫ్లెక్సీలు మరియు ఆహ్వాన పత్రికలు</span></label>
+            <label class="resp-item"><input type="checkbox" value="Snacks, Tea, Water Bottles"><span>🍵 స్నాక్స్, టీ మరియు మంచినీళ్ల బాటిళ్లు</span></label>
+            <label class="resp-item"><input type="checkbox" value="Shawls"><span>🧣 శాలువాలు</span></label>
+            <label class="resp-item"><input type="checkbox" value="Garlands"><span>💐 పూలమాలలు (దండలు)</span></label>
+            <label class="resp-item"><input type="checkbox" value="Mementos or Return Gifts"><span>🎁 మెమెంటోలు లేదా రిటర్న్ గిఫ్ట్‌లు</span></label>
+            <label class="resp-item"><input type="checkbox" value="Bouquets"><span>🌸 పూల గుచ్ఛాలు</span></label>
+            <label class="resp-item"><input type="checkbox" value="Anchoring"><span>🎙️ యాంకరింగ్ (స్టేజ్ పైకి ఆహ్వానించే వ్యక్తి)</span></label>
+            <label class="resp-item"><input type="checkbox" value="Family &amp; Kids Coordinator"><span>👨‍👩‍👧 ఫ్యామిలీ &amp; కిడ్స్ కోఆర్డినేటర్</span></label>
+            <label class="resp-item"><input type="checkbox" value="Finance Coordinator"><span>💰 కోశాధికారి (ఫైనాన్స్ ఇన్-ఛార్జ్)</span></label>
+            <label class="resp-item"><input type="checkbox" value="Guest Coordinator"><span>🤝 అతిథి సమన్వయకర్త</span></label>
+            <label class="resp-item"><input type="checkbox" value="Food In charge (Meals)"><span>🍽️ భోజనాలు &amp; స్నాక్స్ ఇన్-ఛార్జ్</span></label>
+            <label class="resp-item"><input type="checkbox" value="Media in charge (Photos &amp; Video)"><span>📸 ఫోటోలు మరియు వీడియో ఇన్-ఛార్జ్</span></label>
+          </div>
         </div>
-        <button class="resp-more-btn" id="respMoreBtn" onclick="toggleRespMore()">▼ మరిన్ని బాధ్యతలు చూడండి (12 మరిన్ని)</button>
+
       </div>
 
       <div class="location-card">
@@ -867,15 +877,23 @@ function startCountdown() {
   setInterval(tick, 1000);
 }
 /* ===== RESPONSIBILITY TOGGLE ===== */
+let respSectionOpen = false;
+
+function toggleRespSection() {
+  respSectionOpen = !respSectionOpen;
+  const collapse = document.getElementById('respCollapse');
+  const arrow    = document.getElementById('respToggleArrow');
+  if (respSectionOpen) {
+    collapse.style.display = 'block';
+    arrow.style.transform  = 'rotate(180deg)';
+  } else {
+    collapse.style.display = 'none';
+    arrow.style.transform  = 'rotate(0deg)';
+  }
+}
+
 function toggleRespMore() {
-  respExpanded = !respExpanded;
-  document.querySelectorAll('.hidden-resp').forEach(el => {
-    el.classList.toggle('show', respExpanded);
-  });
-  const btn = document.getElementById('respMoreBtn');
-  btn.textContent = respExpanded
-    ? '▲ తక్కువ చూడండి'
-    : '▼ మరిన్ని బాధ్యతలు చూడండి (12 మరిన్ని)';
+  // No longer needed — all items visible inside accordion
 }
 
 /* ===== FEED LOGIN ===== */
