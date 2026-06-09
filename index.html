@@ -159,12 +159,13 @@
   }
   .feed-img {
     width: 100%; border-radius: 10px; margin-top: 8px;
-    max-height: 300px; object-fit: cover; display: block;
-    cursor: pointer;
+    height: auto; max-height: none; object-fit: contain;
+    display: block; cursor: pointer;
+    background: #000;
   }
   .feed-video {
     width: 100%; border-radius: 10px; margin-top: 8px;
-    max-height: 300px;
+    max-height: none; height: auto;
   }
   .feed-caption {
     font-size: 13px; font-weight: 600; color: var(--text);
@@ -835,8 +836,8 @@
 <script>
 const API = "https://script.google.com/macros/s/AKfycbwf5nIyQ8Eq82QhP4aUOOxwHqx0btPEPUkq6wJaXcgq22DGq9X-jdOUQlAuPEvbKlZvTg/exec";
 const FEED_API = "https://script.google.com/macros/s/AKfycbwf5nIyQ8Eq82QhP4aUOOxwHqx0btPEPUkq6wJaXcgq22DGq9X-jdOUQlAuPEvbKlZvTg/exec";
-const ADMIN_EMAIL = "dvvnagesh111@gmail.com";
-const ADMIN_PASS = "nagesh@2009";  // Simple password — change as needed
+const ADMIN_EMAIL = "divinepixels.dvn@gmail.com";
+const ADMIN_PASS = "DVN@2009";  // Simple password — change as needed
 
 let allData = [], comingVal = null, filterVal = 'all';
 let selectedGuests = new Set();
