@@ -1065,9 +1065,9 @@ async function loadSilent() {
 }
 function updateStats() {
   const total  = allData.length;
-  const coming = allData.filter(e => e.coming === 'yes').length;
+  const coming = allData.filter(e => isYes(e.coming)).length;
   let guestCount = 0;
-  allData.filter(e => e.coming === 'yes').forEach(e => {
+  allData.filter(e => isYes(e.coming)).forEach(e => {
     if (e.guests) {
       const g = e.guests.trim();
       if (g && g !== 'ఒంటరిగా వస్తాను' && g !== 'ఎవరూ లేరు') {
@@ -1090,27 +1090,30 @@ function updateStats() {
   }
   const tc = document.getElementById('tCount'); if (tc) tc.textContent = total;
 }
+function isYes(val) { return String(val||'').trim().toLowerCase() === 'yes'; }
+function isNo(val)  { return String(val||'').trim().toLowerCase() === 'no';  }
+
 function renderList() {
   let list = allData;
-  if (filterVal==='yes') list = allData.filter(e=>e.coming==='yes');
-  if (filterVal==='no')  list = allData.filter(e=>e.coming==='no');
+  if (filterVal==='yes') list = allData.filter(e=>isYes(e.coming));
+  if (filterVal==='no')  list = allData.filter(e=>isNo(e.coming));
   const html = list.length===0
     ? '<div class="empty-state"><div style="font-size:44px;margin-bottom:10px">📋</div>ఇంకా ఎవరూ నమోదు చేసుకోలేదు</div>'
     : list.map((e,i)=>`
-      <div class="entry-card ${e.coming==='yes'?'coming':'notcoming'}">
+      <div class="entry-card ${isYes(e.coming)?'coming':'notcoming'}">
         <div class="entry-num">${i+1}</div>
         <div class="entry-info">
           <div class="entry-name">${esc(e.name)}</div>
           <div class="entry-meta">
             📍 ${esc(e.village)}${e.phone?' &nbsp;📞 '+esc(e.phone):''}
             ${e.roll?' &nbsp;🔢 రోల్: '+esc(e.roll):''}
-            ${e.coming==='yes'&&e.guests?'<br>👥 '+esc(e.guests):''}
-            ${e.coming==='no'&&e.reason?'<br>💬 '+esc(e.reason):''}
+            ${isYes(e.coming)&&e.guests?'<br>👥 '+esc(e.guests):''}
+            ${isNo(e.coming)&&e.reason?'<br>💬 '+esc(e.reason):''}
             ${e.help?'<br>🆘 సహాయం: '+esc(e.help):''}
             ${e.responsibility?'<br>🙋 బాధ్యత: <span style="color:#6a1b9a;font-weight:800;">'+esc(e.responsibility)+'</span>':''}
           </div>
         </div>
-        <div class="entry-badge ${e.coming==='yes'?'y':'n'}">${e.coming==='yes'?'✅ వస్తారు':'❌ రారు'}</div>
+        <div class="entry-badge ${isYes(e.coming)?'y':'n'}">${isYes(e.coming)?'✅ వస్తారు':'❌ రారు'}</div>
       </div>`).join('');
   ['entryList','entryList2'].forEach(id=>{
     const el=document.getElementById(id); if(el) el.innerHTML=html;
