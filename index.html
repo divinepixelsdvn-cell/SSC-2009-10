@@ -832,7 +832,7 @@
 <div class="footer">© 2009-2010 బ్యాచ్ Get Together Committee</div>
 
 <script>
-const API = "https://script.google.com/macros/s/AKfycby4c3wEHXgXCKjCFJf7z7T-iThUbg6evMmAGGooPskItvOIrzznNpU2DXDBvFg0N5ISuA/exec;
+const API = "https://script.google.com/macros/s/AKfycbyK29IUP8ze1_zPwCpPKdAxGMNH9jl22osByKVGeGt7v5HS9C7yZ10TFb3ja5TPTYO6YQ/exec";
 const FEED_API = "https://script.google.com/macros/s/AKfycbxpjFrXYqyBmqxwZlknyPJpDY9N9BMKN41-nNrFxSEVNtd056Npd7dkDpfX32QpD2qJ/exec";
 const ADMIN_EMAIL = "dvvnagesh111@gmail.com";
 const ADMIN_PASS = "nagesh@2009";  // Simple password — change as needed
@@ -864,8 +864,6 @@ function startCountdown() {
   tick();
   setInterval(tick, 1000);
 }
-startCountdown();
-
 /* ===== RESPONSIBILITY TOGGLE ===== */
 function toggleRespMore() {
   respExpanded = !respExpanded;
@@ -1025,7 +1023,7 @@ function closeLightbox() {
 
 /* ===== NAVIGATION ===== */
 function showLanding() {
-  document.getElementById('landingSection').style.display = '';
+  document.getElementById('landingSection').style.display = 'block';
   document.getElementById('alreadySection').style.display = 'none';
   document.getElementById('appSection').classList.remove('show');
 }
@@ -1038,7 +1036,7 @@ function showRegister() {
 function showAlready() {
   document.getElementById('landingSection').style.display = 'none';
   document.getElementById('appSection').classList.remove('show');
-  document.getElementById('alreadySection').style.display = '';
+  document.getElementById('alreadySection').style.display = 'block';
   loadData('2');
 }
 
@@ -1226,10 +1224,13 @@ function setFilter(f, listId) {
   renderList();
 }
 
-loadSilent();
-loadFeed();
-setInterval(loadSilent, 30000);
-setInterval(loadFeed, 60000);
+document.addEventListener('DOMContentLoaded', function() {
+  startCountdown();
+  loadSilent();
+  loadFeed();
+  setInterval(loadSilent, 30000);
+  setInterval(loadFeed, 60000);
+});
 </script>
 </body>
 </html>
