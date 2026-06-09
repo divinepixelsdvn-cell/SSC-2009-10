@@ -437,31 +437,31 @@
   .filter-chip.active { background: var(--red); color: #fff; border-color: var(--red); }
   .entry-card {
     background: #fffafa; border: 1.5px solid #ffcdd2;
-    border-radius: 12px; padding: 13px 15px;
-    display: flex; align-items: flex-start; gap: 12px;
-    margin-bottom: 10px; animation: fadeIn 0.3s ease;
+    border-radius: 9px; padding: 8px 10px;
+    display: flex; align-items: flex-start; gap: 8px;
+    margin-bottom: 6px; animation: fadeIn 0.3s ease;
   }
   @keyframes fadeIn { from{opacity:0;transform:translateY(8px)} to{opacity:1;transform:none} }
   .entry-card.coming { border-left: 4px solid #4caf50; }
   .entry-card.notcoming { border-left: 4px solid var(--red-soft); }
   .entry-num {
-    min-width: 32px; height: 32px; border-radius: 50%;
+    min-width: 24px; height: 24px; border-radius: 50%;
     background: linear-gradient(135deg, var(--red), var(--red-dark));
-    color: var(--yellow); font-size: 12px; font-weight: 900;
+    color: var(--yellow); font-size: 10px; font-weight: 900;
     display: flex; align-items: center; justify-content: center;
     font-family: 'Poppins', sans-serif; flex-shrink: 0;
   }
   .entry-info { flex: 1; min-width: 0; }
   .entry-name {
-    font-size: 15px; font-weight: 800; color: var(--red-dark);
+    font-size: 13px; font-weight: 800; color: var(--red-dark);
     font-family: 'Noto Sans Telugu', sans-serif;
   }
   .entry-meta {
-    font-size: 12px; color: var(--muted); margin-top: 3px;
-    line-height: 1.7; font-family: 'Noto Sans Telugu', sans-serif;
+    font-size: 11px; color: var(--muted); margin-top: 2px;
+    line-height: 1.5; font-family: 'Noto Sans Telugu', sans-serif;
   }
   .entry-badge {
-    font-size: 11px; font-weight: 800; padding: 4px 11px;
+    font-size: 10px; font-weight: 800; padding: 3px 8px;
     border-radius: 20px; flex-shrink: 0; align-self: flex-start;
     white-space: nowrap; font-family: 'Noto Sans Telugu', sans-serif;
   }
@@ -643,29 +643,6 @@
   </div>
 </div>
 
-<!-- ===== FEED SECTION ===== -->
-<div class="feed-section">
-  <div class="feed-header">
-    <div class="feed-header-title">📸 ఫోటోలు &amp; వీడియోలు</div>
-    <button class="feed-login-btn" id="feedLoginBtn" onclick="openFeedLogin()">🔐 Admin Login</button>
-  </div>
-  <div class="feed-body">
-    <!-- Admin upload panel (hidden by default) -->
-    <div class="feed-upload-panel" id="feedUploadPanel">
-      <span class="feed-upload-label">📤 ఫోటో / వీడియో పోస్ట్ చేయండి</span>
-      <input class="feed-input" id="feedCaption" type="text" placeholder="వివరణ రాయండి (ఐచ్ఛికం)...">
-      <label class="feed-file-btn" for="feedFileInput">📎 ఫైల్ ఎంచుకోండి (ఫోటో లేదా వీడియో)</label>
-      <input type="file" id="feedFileInput" accept="image/*,video/*" style="display:none" onchange="previewFeedFile(this)">
-      <img id="feedPreviewImg" class="feed-preview" alt="preview">
-      <video id="feedPreviewVid" class="feed-preview" controls style="display:none;"></video>
-      <button class="feed-post-btn" id="feedPostBtn" onclick="postFeedItem()">🚀 Post చేయండి</button>
-      <div id="feedPostMsg" style="margin-top:8px;font-size:12px;color:#2e7d32;font-weight:700;font-family:'Noto Sans Telugu',sans-serif;display:none;"></div>
-    </div>
-    <!-- Feed items -->
-    <div id="feedList"><div class="loading-state">⏳ లోడ్ అవుతోంది...</div></div>
-  </div>
-</div>
-
 <!-- ===== LOGIN MODAL ===== -->
 <div class="modal-overlay" id="loginModal">
   <div class="modal-box">
@@ -683,29 +660,30 @@
   <img id="lightboxImg" src="" alt="">
 </div>
 
-<!-- ===== LANDING ===== -->
+<!-- ===== LANDING + ACCORDION LIST ===== -->
 <div id="landingSection">
   <div class="landing-title">🎉 స్వాగతం! మీరు ఏమి చేయాలనుకుంటున్నారు?</div>
   <div class="landing-sub">దయచేసి క్రింది ఆప్షన్ ఎంచుకోండి</div>
   <div class="landing-btns">
     <button class="btn-register" onclick="showRegister()">📝 నమోదు చేసుకోండి</button>
-    <button class="btn-already" onclick="showAlready()">✅ ఇది వరకూ నమోదు అయ్యాను — జాబితా చూడండి</button>
+    <button class="btn-already" id="listToggleBtn" onclick="toggleListAccordion()">
+      <span id="listToggleLabel">👥 నమోదు జాబితా చూడండి</span>
+      <span id="listToggleArrow" style="float:right;transition:transform 0.3s;">▼</span>
+    </button>
   </div>
-</div>
-
-<!-- ===== ALREADY REGISTERED ===== -->
-<div id="alreadySection">
-  <button class="back-btn" onclick="showLanding()">← వెనక్కి వెళ్ళండి</button>
-  <div class="filter-row">
-    <button class="filter-chip active" id="fAll2" onclick="setFilter('all','2')">అందరూ</button>
-    <button class="filter-chip" id="fYes2" onclick="setFilter('yes','2')">వస్తున్నారు ✅</button>
-    <button class="filter-chip" id="fNo2" onclick="setFilter('no','2')">రావడం లేదు ❌</button>
-  </div>
-  <button class="refresh-btn" onclick="loadData()">🔄 Refresh చేయండి</button>
-  <div id="entryList2"><div class="loading-state">⏳ లోడ్ అవుతోంది...</div></div>
-  <div class="resp-list-section">
-    <div class="resp-list-title">🙋 బాధ్యత తీసుకున్నవారు</div>
-    <div id="respListEntries2"><div class="loading-state" style="padding:12px;font-size:12px;">⏳ లోడ్ అవుతోంది...</div></div>
+  <!-- Accordion list panel -->
+  <div id="listAccordion" style="display:none;margin-top:12px;">
+    <div class="filter-row">
+      <button class="filter-chip active" id="fAll2" onclick="setFilter('all','2')">అందరూ</button>
+      <button class="filter-chip" id="fYes2" onclick="setFilter('yes','2')">వస్తున్నారు ✅</button>
+      <button class="filter-chip" id="fNo2" onclick="setFilter('no','2')">రావడం లేదు ❌</button>
+    </div>
+    <button class="refresh-btn" onclick="loadData('2')">🔄 Refresh చేయండి</button>
+    <div id="entryList2"><div class="loading-state">⏳ లోడ్ అవుతోంది...</div></div>
+    <div class="resp-list-section">
+      <div class="resp-list-title">🙋 బాధ్యత తీసుకున్నవారు</div>
+      <div id="respListEntries2"><div class="loading-state" style="padding:12px;font-size:12px;">⏳ లోడ్ అవుతోంది...</div></div>
+    </div>
   </div>
 </div>
 
@@ -841,6 +819,27 @@
   </div>
 </div>
 
+<!-- ===== FEED SECTION ===== -->
+<div class="feed-section" id="feedSection" style="display:none;">
+  <div class="feed-header">
+    <div class="feed-header-title">📸 ఫోటోలు &amp; వీడియోలు</div>
+    <button class="feed-login-btn" id="feedLoginBtn" onclick="openFeedLogin()">🔐 Admin Login</button>
+  </div>
+  <div class="feed-body">
+    <div class="feed-upload-panel" id="feedUploadPanel">
+      <span class="feed-upload-label">📤 ఫోటో / వీడియో పోస్ట్ చేయండి</span>
+      <input class="feed-input" id="feedCaption" type="text" placeholder="వివరణ రాయండి (ఐచ్ఛికం)...">
+      <label class="feed-file-btn" for="feedFileInput">📎 ఫైల్ ఎంచుకోండి (ఫోటో లేదా వీడియో)</label>
+      <input type="file" id="feedFileInput" accept="image/*,video/*" style="display:none" onchange="previewFeedFile(this)">
+      <img id="feedPreviewImg" class="feed-preview" alt="preview">
+      <video id="feedPreviewVid" class="feed-preview" controls style="display:none;"></video>
+      <button class="feed-post-btn" id="feedPostBtn" onclick="postFeedItem()">🚀 Post చేయండి</button>
+      <div id="feedPostMsg" style="margin-top:8px;font-size:12px;color:#2e7d32;font-weight:700;font-family:'Noto Sans Telugu',sans-serif;display:none;"></div>
+    </div>
+    <div id="feedList"></div>
+  </div>
+</div>
+
 <div class="footer">© 2009-2010 బ్యాచ్ Get Together Committee</div>
 
 <script>
@@ -915,6 +914,7 @@ function doLogin() {
   if (pwd === ADMIN_PASS) {
     isAdmin = true;
     document.getElementById('loginModal').classList.remove('show');
+    document.getElementById('feedSection').style.display = 'block';
     document.getElementById('feedUploadPanel').classList.add('show');
     document.getElementById('feedLoginBtn').textContent = '🔓 Logout';
   } else {
@@ -1009,27 +1009,44 @@ async function loadFeed() {
     feedItems = json.feed || [];
     renderFeed();
   } catch(e) {
-    // If API doesn't support feed yet, show empty
-    document.getElementById('feedList').innerHTML =
-      '<div class="feed-empty">📷 ఇంకా ఫోటోలు / వీడియోలు పోస్ట్ కాలేదు.<br><span style="font-size:11px;">Admin పోస్ట్ చేసిన తర్వాత ఇక్కడ కనిపిస్తాయి.</span></div>';
+    // If API doesn't support feed yet, hide section
+    document.getElementById('feedSection').style.display = 'none';
   }
 }
 
 function renderFeed() {
   const el = document.getElementById('feedList');
-  if (!feedItems.length) {
-    el.innerHTML = '<div class="feed-empty">📷 ఇంకా ఫోటోలు / వీడియోలు పోస్ట్ కాలేదు.<br><span style="font-size:11px;">Admin పోస్ట్ చేసిన తర్వాత ఇక్కడ కనిపిస్తాయి.</span></div>';
+  const section = document.getElementById('feedSection');
+  // Filter only items that have a valid URL
+  const validItems = feedItems.filter(item => item.url && item.url.trim() !== '');
+  if (!validItems.length) {
+    if (isAdmin) {
+      section.style.display = 'block';
+      el.innerHTML = '<div class="feed-empty">📷 ఇంకా ఫోటోలు పోస్ట్ కాలేదు. పైన పోస్ట్ చేయండి.</div>';
+    } else {
+      section.style.display = 'none';
+    }
     return;
   }
-  el.innerHTML = feedItems.map((item, i) => `
-    <div class="feed-item">
-      <div class="feed-item-meta">📅 ${esc(item.timestamp || '')}</div>
-      ${item.type === 'image'
-        ? `<img class="feed-img" src="${esc(item.url)}" alt="feed" onclick="openLightbox('${esc(item.url)}')" loading="lazy">`
-        : `<video class="feed-video" src="${esc(item.url)}" controls preload="none"></video>`
-      }
+  section.style.display = 'block';
+  el.innerHTML = validItems.map((item, i) => {
+    // Detect type from fileType or url extension if item.type missing
+    const url = item.url || '';
+    const ft = (item.fileType || item.type || '').toLowerCase();
+    const isVideo = ft.includes('video') || /\.(mp4|webm|ogg|mov)$/i.test(url);
+    const isImage = !isVideo && (ft.includes('image') || /\.(jpg|jpeg|png|gif|webp|bmp)$/i.test(url) || ft === 'image');
+    if (!isImage && !isVideo) return ''; // skip unknown types
+    return `<div class="feed-item">
       ${item.caption ? `<div class="feed-caption">${esc(item.caption)}</div>` : ''}
-    </div>`).join('');
+      ${isImage
+        ? `<img class="feed-img" src="${esc(url)}" alt="ఫోటో" loading="lazy"
+             onclick="openLightbox('${esc(url)}')"
+             onerror="this.closest('.feed-item').style.display='none'">`
+        : `<video class="feed-video" src="${esc(url)}" controls preload="none"
+             onerror="this.closest('.feed-item').style.display='none'"></video>`
+      }
+    </div>`;
+  }).join('');
 }
 
 /* ===== LIGHTBOX ===== */
@@ -1043,20 +1060,36 @@ function closeLightbox() {
 
 /* ===== NAVIGATION ===== */
 function showLanding() {
+  listAccordionOpen = false;
+  const panel = document.getElementById('listAccordion');
+  if (panel) panel.style.display = 'none';
+  const arrow = document.getElementById('listToggleArrow');
+  if (arrow) arrow.style.transform = 'rotate(0deg)';
   document.getElementById('landingSection').style.display = 'block';
-  document.getElementById('alreadySection').style.display = 'none';
   document.getElementById('appSection').classList.remove('show');
 }
 function showRegister() {
+  // Close accordion first
+  listAccordionOpen = false;
+  document.getElementById('listAccordion').style.display = 'none';
+  const arrow = document.getElementById('listToggleArrow');
+  if (arrow) arrow.style.transform = 'rotate(0deg)';
   document.getElementById('landingSection').style.display = 'none';
-  document.getElementById('alreadySection').style.display = 'none';
   document.getElementById('appSection').classList.add('show');
   loadSilent();
+}
+let listAccordionOpen = false;
+function toggleListAccordion() {
+  listAccordionOpen = !listAccordionOpen;
+  const panel = document.getElementById('listAccordion');
+  const arrow = document.getElementById('listToggleArrow');
+  panel.style.display = listAccordionOpen ? 'block' : 'none';
+  arrow.style.transform = listAccordionOpen ? 'rotate(180deg)' : 'rotate(0deg)';
+  if (listAccordionOpen) loadData('2');
 }
 function showAlready() {
   document.getElementById('landingSection').style.display = 'none';
   document.getElementById('appSection').classList.remove('show');
-  document.getElementById('alreadySection').style.display = 'block';
   loadData('2');
 }
 
