@@ -120,150 +120,7 @@
   .stat-l { font-size: 10px; color: rgba(255,255,255,0.65); margin-top: 4px; font-weight: 600;
     font-family: 'Noto Sans Telugu', sans-serif; line-height: 1.4; }
 
-  /* ===== FEED SECTION ===== */
-  .feed-section {
-    max-width: 520px; margin: 0 auto;
-    background: #fff;
-    border-bottom: 2px solid var(--border);
-  }
-  .feed-header {
-    background: linear-gradient(135deg, #1a237e, #283593);
-    padding: 12px 18px; display: flex; align-items: center; justify-content: space-between;
-  }
-  .feed-header-title {
-    font-size: 14px; font-weight: 900; color: #fff;
-    font-family: 'Noto Sans Telugu', sans-serif;
-    display: flex; align-items: center; gap: 8px;
-  }
-  .feed-login-btn {
-    background: var(--yellow); color: var(--red-dark);
-    border: none; border-radius: 8px;
-    font-size: 11px; font-weight: 800; padding: 6px 12px;
-    cursor: pointer; font-family: 'Noto Sans Telugu', sans-serif;
-    transition: all 0.2s;
-  }
-  .feed-login-btn:hover { background: #fff; }
-  .feed-body { padding: 14px 16px; }
-  .feed-empty {
-    text-align: center; padding: 24px; color: var(--muted);
-    font-size: 13px; font-family: 'Noto Sans Telugu', sans-serif;
-  }
-  .feed-item {
-    background: #fafafa; border: 1.5px solid #e8eaf6;
-    border-radius: 12px; padding: 12px 14px; margin-bottom: 10px;
-    animation: fadeIn 0.3s ease;
-  }
-  .feed-item-meta {
-    font-size: 11px; color: var(--muted); margin-bottom: 6px;
-    font-family: 'Noto Sans Telugu', sans-serif;
-  }
-  .feed-img {
-    width: 100%; border-radius: 10px; margin-top: 8px;
-    height: auto; max-height: none; object-fit: contain;
-    display: block; cursor: pointer;
-    background: #000;
-  }
-  .feed-video {
-    width: 100%; border-radius: 10px; margin-top: 8px;
-    max-height: none; height: auto;
-  }
-  .feed-caption {
-    font-size: 13px; font-weight: 600; color: var(--text);
-    font-family: 'Noto Sans Telugu', sans-serif; margin-top: 6px;
-  }
-  /* Admin upload UI */
-  .feed-upload-panel {
-    display: none;
-    background: linear-gradient(135deg, #e8eaf6, #ede7f6);
-    border: 2px solid #5c6bc0; border-radius: 12px;
-    padding: 14px; margin-bottom: 14px;
-  }
-  .feed-upload-panel.show { display: block; }
-  .feed-upload-label {
-    font-size: 13px; font-weight: 800; color: #283593;
-    font-family: 'Noto Sans Telugu', sans-serif; margin-bottom: 10px; display: block;
-  }
-  .feed-input {
-    width: 100%; padding: 10px 12px; margin-bottom: 8px;
-    border: 2px solid #9fa8da; border-radius: 8px;
-    font-size: 13px; font-family: 'Noto Sans Telugu', sans-serif;
-    outline: none; background: #fff;
-  }
-  .feed-input:focus { border-color: #3f51b5; }
-  .feed-file-btn {
-    display: block; width: 100%; padding: 10px;
-    background: #e8eaf6; border: 2px dashed #7986cb;
-    border-radius: 8px; text-align: center;
-    font-size: 13px; font-weight: 700; color: #283593;
-    cursor: pointer; font-family: 'Noto Sans Telugu', sans-serif;
-    margin-bottom: 8px; transition: all 0.2s;
-  }
-  .feed-file-btn:hover { background: #c5cae9; }
-  .feed-post-btn {
-    width: 100%; padding: 11px;
-    background: linear-gradient(135deg, #3f51b5, #283593);
-    color: #fff; border: none; border-radius: 8px;
-    font-size: 14px; font-weight: 800;
-    font-family: 'Noto Sans Telugu', sans-serif;
-    cursor: pointer; transition: all 0.2s;
-  }
-  .feed-post-btn:hover { background: linear-gradient(135deg, #283593, #1a237e); }
-  .feed-post-btn:disabled { opacity: 0.5; cursor: not-allowed; }
-  .feed-preview { width:100%; max-height:180px; object-fit:cover; border-radius:8px; margin-bottom:8px; display:none; }
-
-  /* Login modal */
-  .modal-overlay {
-    position: fixed; inset: 0; background: rgba(0,0,0,0.6);
-    z-index: 1000; display: none; align-items: center; justify-content: center;
-  }
-  .modal-overlay.show { display: flex; }
-  .modal-box {
-    background: #fff; border-radius: 18px; padding: 28px 24px;
-    width: 90%; max-width: 360px; text-align: center;
-    box-shadow: 0 20px 60px rgba(0,0,0,0.3);
-    animation: pop 0.3s ease;
-  }
-  .modal-title {
-    font-size: 17px; font-weight: 900; color: #283593;
-    margin-bottom: 6px; font-family: 'Noto Sans Telugu', sans-serif;
-  }
-  .modal-sub {
-    font-size: 12px; color: var(--muted); margin-bottom: 18px;
-    font-family: 'Noto Sans Telugu', sans-serif;
-  }
-  .modal-input {
-    width: 100%; padding: 12px 14px; margin-bottom: 10px;
-    border: 2px solid #c5cae9; border-radius: 10px;
-    font-size: 14px; font-family: sans-serif; outline: none;
-  }
-  .modal-input:focus { border-color: #3f51b5; }
-  .modal-btn {
-    width: 100%; padding: 13px;
-    background: linear-gradient(135deg, #3f51b5, #283593);
-    color: #fff; border: none; border-radius: 10px;
-    font-size: 15px; font-weight: 800; cursor: pointer;
-    font-family: 'Noto Sans Telugu', sans-serif;
-    margin-bottom: 8px; transition: all 0.2s;
-  }
-  .modal-btn:hover { background: linear-gradient(135deg, #283593, #1a237e); }
-  .modal-cancel {
-    background: none; border: none; color: var(--muted);
-    font-size: 13px; cursor: pointer; padding: 6px;
-    font-family: 'Noto Sans Telugu', sans-serif;
-  }
-  .modal-err { color: #c62828; font-size: 12px; font-weight: 700; margin-bottom: 8px; display: none; }
-  .modal-err.show { display: block; }
-
-  /* Image lightbox */
-  .lightbox {
-    position: fixed; inset: 0; background: rgba(0,0,0,0.9);
-    z-index: 2000; display: none; align-items: center; justify-content: center;
-    cursor: pointer;
-  }
-  .lightbox.show { display: flex; }
-  .lightbox img { max-width: 96vw; max-height: 92vh; border-radius: 8px; }
-
-  /* ===== LANDING ===== */
+        /* ===== LANDING ===== */
   #landingSection {
     max-width: 520px; margin: 0 auto;
     background: #fff; padding: 28px 22px 34px;
@@ -643,22 +500,6 @@
   </div>
 </div>
 
-<!-- ===== LOGIN MODAL ===== -->
-<div class="modal-overlay" id="loginModal">
-  <div class="modal-box">
-    <div class="modal-title">🔐 Admin Login</div>
-    <div class="modal-sub">divinepixels.dvn@gmail.com తో లాగిన్ చేయండి</div>
-    <div class="modal-err" id="loginErr">⚠️ తప్పు పాస్‌వర్డ్. మళ్ళీ ప్రయత్నించండి.</div>
-    <input class="modal-input" type="password" id="loginPwd" placeholder="పాస్‌వర్డ్ రాయండి..." onkeydown="if(event.key==='Enter')doLogin()">
-    <button class="modal-btn" onclick="doLogin()">✅ Login చేయండి</button>
-    <button class="modal-cancel" onclick="closeModal()">రద్దు చేయండి</button>
-  </div>
-</div>
-
-<!-- ===== IMAGE LIGHTBOX ===== -->
-<div class="lightbox" id="lightbox" onclick="closeLightbox()">
-  <img id="lightboxImg" src="" alt="">
-</div>
 
 <!-- ===== LANDING + ACCORDION LIST ===== -->
 <div id="landingSection">
@@ -819,41 +660,15 @@
   </div>
 </div>
 
-<!-- ===== FEED SECTION ===== -->
-<div class="feed-section" id="feedSection" style="display:none;">
-  <div class="feed-header">
-    <div class="feed-header-title">📸 ఫోటోలు &amp; వీడియోలు</div>
-    <button class="feed-login-btn" id="feedLoginBtn" onclick="openFeedLogin()">🔐 Admin Login</button>
-  </div>
-  <div class="feed-body">
-    <div class="feed-upload-panel" id="feedUploadPanel">
-      <span class="feed-upload-label">📤 ఫోటో / వీడియో పోస్ట్ చేయండి</span>
-      <input class="feed-input" id="feedCaption" type="text" placeholder="వివరణ రాయండి (ఐచ్ఛికం)...">
-      <label class="feed-file-btn" for="feedFileInput">📎 ఫైల్ ఎంచుకోండి (ఫోటో లేదా వీడియో)</label>
-      <input type="file" id="feedFileInput" accept="image/*,video/*" style="display:none" onchange="previewFeedFile(this)">
-      <img id="feedPreviewImg" class="feed-preview" alt="preview">
-      <video id="feedPreviewVid" class="feed-preview" controls style="display:none;"></video>
-      <button class="feed-post-btn" id="feedPostBtn" onclick="postFeedItem()">🚀 Post చేయండి</button>
-      <div id="feedPostMsg" style="margin-top:8px;font-size:12px;color:#2e7d32;font-weight:700;font-family:'Noto Sans Telugu',sans-serif;display:none;"></div>
-    </div>
-    <div id="feedList"></div>
-  </div>
-</div>
 
 <div class="footer">© 2009-2010 బ్యాచ్ Get Together Committee</div>
 
 <script>
 const API = "https://script.google.com/macros/s/AKfycbwf5nIyQ8Eq82QhP4aUOOxwHqx0btPEPUkq6wJaXcgq22DGq9X-jdOUQlAuPEvbKlZvTg/exec";
-const FEED_API = "https://script.google.com/macros/s/AKfycbwf5nIyQ8Eq82QhP4aUOOxwHqx0btPEPUkq6wJaXcgq22DGq9X-jdOUQlAuPEvbKlZvTg/exec";
-const ADMIN_EMAIL = "divinepixels.dvn@gmail.com";
-const ADMIN_PASS = "DVN@2009";  // Simple password — change as needed
 
 let allData = [], comingVal = null, filterVal = 'all';
 let selectedGuests = new Set();
-let isAdmin = false;
 let respExpanded = false;
-let feedItems = [];
-let localFeedItems = []; // locally posted items (blob URLs) that persist
 
 /* ===== COUNTDOWN ===== */
 function startCountdown() {
@@ -897,184 +712,8 @@ function toggleRespMore() {
 }
 
 /* ===== FEED LOGIN ===== */
-function openFeedLogin() {
-  if (isAdmin) {
-    // logout
-    isAdmin = false;
-    document.getElementById('feedUploadPanel').classList.remove('show');
-    document.getElementById('feedLoginBtn').textContent = '🔐 Admin Login';
-    return;
-  }
-  document.getElementById('loginModal').classList.add('show');
-  document.getElementById('loginPwd').value = '';
-  document.getElementById('loginErr').classList.remove('show');
-  setTimeout(()=>document.getElementById('loginPwd').focus(), 200);
-}
-function doLogin() {
-  const pwd = document.getElementById('loginPwd').value;
-  if (pwd === ADMIN_PASS) {
-    isAdmin = true;
-    document.getElementById('loginModal').classList.remove('show');
-    document.getElementById('feedSection').style.display = 'block';
-    document.getElementById('feedUploadPanel').classList.add('show');
-    document.getElementById('feedLoginBtn').textContent = '🔓 Logout';
-  } else {
-    document.getElementById('loginErr').classList.add('show');
-  }
-}
-function closeModal() {
-  document.getElementById('loginModal').classList.remove('show');
-}
-
 /* ===== FEED FILE PREVIEW ===== */
-function previewFeedFile(input) {
-  const file = input.files[0];
-  if (!file) return;
-  const imgEl = document.getElementById('feedPreviewImg');
-  const vidEl = document.getElementById('feedPreviewVid');
-  imgEl.style.display = 'none';
-  vidEl.style.display = 'none';
-  const url = URL.createObjectURL(file);
-  if (file.type.startsWith('image/')) {
-    imgEl.src = url; imgEl.style.display = 'block';
-  } else if (file.type.startsWith('video/')) {
-    vidEl.src = url; vidEl.style.display = 'block';
-  }
-}
-
-/* ===== POST FEED ITEM ===== */
-async function postFeedItem() {
-  const file = document.getElementById('feedFileInput').files[0];
-  const caption = document.getElementById('feedCaption').value.trim();
-  if (!file) { alert('ఫైల్ ఎంచుకోండి!'); return; }
-
-  const btn = document.getElementById('feedPostBtn');
-  const msgEl = document.getElementById('feedPostMsg');
-  btn.disabled = true; btn.textContent = '⏳ Upload అవుతోంది...';
-  msgEl.style.display = 'none';
-
-  try {
-    // Convert file to base64
-    const base64 = await new Promise((res, rej) => {
-      const r = new FileReader();
-      r.onload = () => res(r.result.split(',')[1]);
-      r.onerror = rej;
-      r.readAsDataURL(file);
-    });
-
-    const payload = {
-      action: 'feedPost',
-      fileName: file.name,
-      fileType: file.type,
-      fileData: base64,
-      caption: caption,
-      timestamp: new Date().toISOString()
-    };
-
-    await fetch(API, {
-      method: 'POST', mode: 'no-cors',
-      headers: { 'Content-Type': 'text/plain' },
-      body: JSON.stringify(payload)
-    });
-
-    await new Promise(r => setTimeout(r, 2500));
-
-    // Store locally for immediate display (persists across loadFeed calls)
-    const localUrl = URL.createObjectURL(file);
-    const newItem = {
-      url: localUrl,
-      type: file.type.startsWith('image/') ? 'image' : 'video',
-      fileType: file.type,
-      caption: caption,
-      timestamp: new Date().toLocaleString('te-IN'),
-      isLocal: true
-    };
-    localFeedItems.unshift(newItem);
-    feedItems = [...localFeedItems]; // merge
-    renderFeed();
-
-    document.getElementById('feedCaption').value = '';
-    document.getElementById('feedFileInput').value = '';
-    document.getElementById('feedPreviewImg').style.display = 'none';
-    document.getElementById('feedPreviewVid').style.display = 'none';
-    msgEl.textContent = '✅ విజయవంతంగా పోస్ట్ అయింది!';
-    msgEl.style.display = 'block';
-    setTimeout(() => msgEl.style.display = 'none', 4000);
-  } catch(e) {
-    alert('⚠️ Upload విఫలమైంది. మళ్ళీ ప్రయత్నించండి.');
-  }
-  btn.disabled = false; btn.textContent = '🚀 Post చేయండి';
-}
-
-/* ===== LOAD FEED ===== */
-async function loadFeed() {
-  try {
-    const res = await fetch(API + "?action=getFeed&t=" + Date.now());
-    const json = await res.json();
-    const apiFeed = json.feed || [];
-    // Merge: local items first (newly posted), then API items
-    feedItems = [...localFeedItems, ...apiFeed];
-    renderFeed();
-  } catch(e) {
-    // If API doesn't support feed yet, still show local items
-    feedItems = [...localFeedItems];
-    renderFeed();
-  }
-}
-
-function renderFeed() {
-  const el = document.getElementById('feedList');
-  const section = document.getElementById('feedSection');
-  // Filter only items that have a valid URL
-  // Include items with url OR text-only posts
-  const validItems = feedItems.filter(item => (item.url && item.url.trim() !== '') || (item.caption && item.caption.trim() !== '') || (item.text && item.text.trim() !== ''));
-  if (!validItems.length) {
-    if (isAdmin) {
-      section.style.display = 'block';
-      el.innerHTML = '<div class="feed-empty">📷 ఇంకా ఫోటోలు పోస్ట్ కాలేదు. పైన పోస్ట్ చేయండి.</div>';
-    } else {
-      section.style.display = 'none';
-    }
-    return;
-  }
-  section.style.display = 'block';
-  el.innerHTML = validItems.map((item, i) => {
-    // Detect type from fileType or url extension if item.type missing
-    const url = item.url || '';
-    const ft = (item.fileType || item.type || '').toLowerCase();
-    const isVideo = ft.includes('video') || /\.(mp4|webm|ogg|mov)$/i.test(url);
-    const isImage = !isVideo && (ft.includes('image') || /\.(jpg|jpeg|png|gif|webp|bmp)$/i.test(url) || ft === 'image');
-    const textContent = item.text || '';
-    // If no url, show as text/caption post
-    if (!isImage && !isVideo) {
-      if (!item.caption && !textContent) return '';
-      return `<div class="feed-item">
-        ${textContent ? `<div class="feed-caption">${esc(textContent)}</div>` : ''}
-        ${item.caption ? `<div class="feed-caption">${esc(item.caption)}</div>` : ''}
-      </div>`;
-    }
-    return `<div class="feed-item">
-      ${item.caption ? `<div class="feed-caption">${esc(item.caption)}</div>` : ''}
-      ${isImage
-        ? `<img class="feed-img" src="${esc(url)}" alt="ఫోటో" loading="lazy"
-             onclick="openLightbox('${esc(url)}')"
-             onerror="this.closest('.feed-item').style.display='none'">`
-        : `<video class="feed-video" src="${esc(url)}" controls preload="none"
-             onerror="this.closest('.feed-item').style.display='none'"></video>`
-      }
-    </div>`;
-  }).join('');
-}
-
 /* ===== LIGHTBOX ===== */
-function openLightbox(src) {
-  document.getElementById('lightboxImg').src = src;
-  document.getElementById('lightbox').classList.add('show');
-}
-function closeLightbox() {
-  document.getElementById('lightbox').classList.remove('show');
-}
-
 /* ===== NAVIGATION ===== */
 function showLanding() {
   listAccordionOpen = false;
@@ -1308,9 +947,7 @@ function setFilter(f, listId) {
 document.addEventListener('DOMContentLoaded', function() {
   startCountdown();
   loadSilent();
-  loadFeed();
   setInterval(loadSilent, 30000);
-  setInterval(loadFeed, 60000);
 });
 </script>
 </body>
