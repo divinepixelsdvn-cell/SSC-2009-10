@@ -853,6 +853,7 @@ let selectedGuests = new Set();
 let isAdmin = false;
 let respExpanded = false;
 let feedItems = [];
+let localFeedItems = []; // locally posted items (blob URLs) that persist
 
 /* ===== COUNTDOWN ===== */
 function startCountdown() {
@@ -978,14 +979,18 @@ async function postFeedItem() {
 
     await new Promise(r => setTimeout(r, 2500));
 
-    // Store locally for immediate display
+    // Store locally for immediate display (persists across loadFeed calls)
     const localUrl = URL.createObjectURL(file);
-    feedItems.unshift({
+    const newItem = {
       url: localUrl,
       type: file.type.startsWith('image/') ? 'image' : 'video',
+      fileType: file.type,
       caption: caption,
-      timestamp: new Date().toLocaleString('te-IN')
-    });
+      timestamp: new Date().toLocaleString('te-IN'),
+      isLocal: true
+    };
+    localFeedItems.unshift(newItem);
+    feedItems = [...localFeedItems]; // merge
     renderFeed();
 
     document.getElementById('feedCaption').value = '';
@@ -1006,11 +1011,14 @@ async function loadFeed() {
   try {
     const res = await fetch(API + "?action=getFeed&t=" + Date.now());
     const json = await res.json();
-    feedItems = json.feed || [];
+    const apiFeed = json.feed || [];
+    // Merge: local items first (newly posted), then API items
+    feedItems = [...localFeedItems, ...apiFeed];
     renderFeed();
   } catch(e) {
-    // If API doesn't support feed yet, hide section
-    document.getElementById('feedSection').style.display = 'none';
+    // If API doesn't support feed yet, still show local items
+    feedItems = [...localFeedItems];
+    renderFeed();
   }
 }
 
@@ -1018,7 +1026,8 @@ function renderFeed() {
   const el = document.getElementById('feedList');
   const section = document.getElementById('feedSection');
   // Filter only items that have a valid URL
-  const validItems = feedItems.filter(item => item.url && item.url.trim() !== '');
+  // Include items with url OR text-only posts
+  const validItems = feedItems.filter(item => (item.url && item.url.trim() !== '') || (item.caption && item.caption.trim() !== '') || (item.text && item.text.trim() !== ''));
   if (!validItems.length) {
     if (isAdmin) {
       section.style.display = 'block';
@@ -1035,7 +1044,15 @@ function renderFeed() {
     const ft = (item.fileType || item.type || '').toLowerCase();
     const isVideo = ft.includes('video') || /\.(mp4|webm|ogg|mov)$/i.test(url);
     const isImage = !isVideo && (ft.includes('image') || /\.(jpg|jpeg|png|gif|webp|bmp)$/i.test(url) || ft === 'image');
-    if (!isImage && !isVideo) return ''; // skip unknown types
+    const textContent = item.text || '';
+    // If no url, show as text/caption post
+    if (!isImage && !isVideo) {
+      if (!item.caption && !textContent) return '';
+      return `<div class="feed-item">
+        ${textContent ? `<div class="feed-caption">${esc(textContent)}</div>` : ''}
+        ${item.caption ? `<div class="feed-caption">${esc(item.caption)}</div>` : ''}
+      </div>`;
+    }
     return `<div class="feed-item">
       ${item.caption ? `<div class="feed-caption">${esc(item.caption)}</div>` : ''}
       ${isImage
