@@ -638,6 +638,7 @@
   <div class="stat-item">
     <div class="stat-n b" id="sParticipants">0</div>
     <div class="stat-l">మొత్తం పాల్గొనేవారు</div>
+    <div id="sBreakdown" style="font-size:9px;color:rgba(255,255,255,0.55);margin-top:3px;line-height:1.5;font-family:'Noto Sans Telugu',sans-serif;"></div>
   </div>
 </div>
 
@@ -774,9 +775,9 @@
         <textarea class="form-input" id="iHelp" placeholder="ఉదా: వాహన సదుపాయం, దిశా నిర్దేశం..."></textarea>
       </div>
 
-      <!-- RESPONSIBILITY SECTION -->
-      <div class="section-divider"><span>🙋 నేను ఈ బాధ్యత తీసుకుంటాను</span></div>
-      <div class="resp-card">
+      <!-- RESPONSIBILITY SECTION (hidden for now) -->
+      <div class="section-divider" style="display:none;"><span>🙋 నేను ఈ బాధ్యత తీసుకుంటాను</span></div>
+      <div class="resp-card" style="display:none;">
         <div class="resp-intro">మీకు ఏదైనా బాధ్యత తీసుకోవాలంటే క్రింది వాటిలో ఎంచుకోండి <span style="color:var(--muted);font-weight:500;font-size:12px;">(ఐచ్ఛికం — ఒకటి కంటే ఎక్కువ ఎంచుకోవచ్చు)</span></div>
         <div class="resp-grid" id="respGrid">
           <label class="resp-item"><input type="checkbox" value="Tent, Chairs, Stage"><span>🎪 టెంట్, కుర్చీలు మరియు స్టేజ్ (వేదిక)</span></label>
@@ -1079,6 +1080,14 @@ function updateStats() {
   document.getElementById('sComing').textContent       = coming;
   document.getElementById('sNot').textContent          = total - coming;
   document.getElementById('sParticipants').textContent = participants;
+  const bd = document.getElementById('sBreakdown');
+  if (bd) {
+    if (guestCount > 0) {
+      bd.innerHTML = `నమోదు: ${coming}<br>వెంట వచ్చేవారు: ${guestCount}`;
+    } else {
+      bd.innerHTML = '';
+    }
+  }
   const tc = document.getElementById('tCount'); if (tc) tc.textContent = total;
 }
 function renderList() {
