@@ -466,33 +466,7 @@
     margin-top: 5px; display: flex; flex-wrap: wrap; gap: 4px;
   }
 
-  /* ===== REGISTRATION CARD MODAL ===== */
-  #cardModal {
-    display: none; position: fixed; inset: 0; z-index: 9999;
-    background: rgba(0,0,0,0.75); align-items: center; justify-content: center;
-    padding: 16px;
-  }
-  #cardModal.show { display: flex; }
-  .card-modal-inner {
-    background: #fff; border-radius: 16px; width: 100%; max-width: 480px;
-    overflow: hidden; box-shadow: 0 20px 60px rgba(0,0,0,0.5);
-    animation: pop 0.3s ease;
-  }
-  .card-modal-actions {
-    display: flex; gap: 10px; padding: 14px 16px;
-    background: #f9f9f9; border-top: 1px solid #eee; flex-wrap: wrap;
-  }
-  .card-btn {
-    flex: 1; padding: 12px; border-radius: 10px; border: none;
-    font-size: 14px; font-weight: 800; cursor: pointer;
-    font-family: 'Noto Sans Telugu', sans-serif; transition: all 0.2s;
-  }
-  .card-btn-dl { background: linear-gradient(135deg,#b71c1c,#7f0000); color: #ffd600; }
-  .card-btn-dl:hover { transform: translateY(-1px); }
-  .card-btn-share { background: linear-gradient(135deg,#1565c0,#0d47a1); color: #fff; }
-  .card-btn-share:hover { transform: translateY(-1px); }
-  .card-btn-close { background: #eee; color: #555; flex: 0 0 auto; padding: 12px 18px; }
-  #regCardCanvas { display: block; width: 100%; }
+  
 </style>
 </head>
 <body>
@@ -545,8 +519,8 @@
 
 <!-- ===== LANDING + ACCORDION LIST ===== -->
 <div id="landingSection">
-  <div class="landing-title">🎉 స్వాగతం! మీరు ఏమి చేయాలనుకుంటున్నారు?</div>
-  <div class="landing-sub">దయచేసి క్రింది ఆప్షన్ ఎంచుకోండి</div>
+  <div class="landing-title">🎉 స్వాగతం! మీరు మీ మిత్రులను కలుసుకుంటారా..?</div>
+  <div class="landing-sub">ఇప్పుడే నమోదు చెసుకోండి</div>
   <div class="landing-btns">
     <button class="btn-register" onclick="showRegister()">📝 నమోదు చేసుకోండి</button>
     <button class="btn-already" id="listToggleBtn" onclick="toggleListAccordion()">
@@ -705,18 +679,6 @@
 
 
 <div class="footer">© 2009-2010 బ్యాచ్ Get Together Committee</div>
-
-<!-- ===== REGISTRATION CARD MODAL ===== -->
-<div id="cardModal">
-  <div class="card-modal-inner">
-    <canvas id="regCardCanvas"></canvas>
-    <div class="card-modal-actions">
-      <button class="card-btn card-btn-dl" onclick="downloadCard()">⬇️ డౌన్లోడ్</button>
-      <button class="card-btn card-btn-share" onclick="shareCard()">📤 షేర్</button>
-      <button class="card-btn card-btn-close" onclick="closeCardModal()">✖ మూసేయి</button>
-    </div>
-  </div>
-</div>
 
 <script>
 const API = "https://script.google.com/macros/s/AKfycbwf5nIyQ8Eq82QhP4aUOOxwHqx0btPEPUkq6wJaXcgq22DGq9X-jdOUQlAuPEvbKlZvTg/exec";
@@ -996,158 +958,12 @@ async function doSubmit() {
     document.getElementById('reasonBox').classList.remove('show');
     document.getElementById('successBanner').classList.add('show');
     setTimeout(()=>document.getElementById('successBanner').classList.remove('show'),7000);
-    // Generate registration card
-    await generateCard(name, village, phone, roll);
-    document.getElementById('cardModal').classList.add('show');
   } catch(e) {
     alert('⚠️ Network error. మళ్ళీ ప్రయత్నించండి.');
   }
   btn.disabled=false; btn.textContent='✅ Submit చేయండి';
 }
-/* ===== REGISTRATION CARD ===== */
-let cardBlob = null;
 
-async function generateCard(name, village, phone, roll) {
-  const canvas = document.getElementById('regCardCanvas');
-  const W = 900, H = 500;
-  canvas.width = W; canvas.height = H;
-  const ctx = canvas.getContext('2d');
-
-  // Load background image
-  const bg = new Image();
-  bg.crossOrigin = 'anonymous';
-  await new Promise((res) => {
-    bg.onload = res;
-    bg.onerror = res;
-    bg.src = 'https://raw.githubusercontent.com/divinepixelsdvn-cell/SSC-2009-10/main/Gemini_Generated_Image_ao18jiao18jiao18_copy.jpg';
-  });
-
-  // Draw background
-  if (bg.complete && bg.naturalWidth > 0) {
-    ctx.drawImage(bg, 0, 0, W, H);
-  } else {
-    // fallback gradient background
-    const grad = ctx.createLinearGradient(0, 0, W, H);
-    grad.addColorStop(0, '#2c0000');
-    grad.addColorStop(0.5, '#7f0000');
-    grad.addColorStop(1, '#2c0000');
-    ctx.fillStyle = grad;
-    ctx.fillRect(0, 0, W, H);
-  }
-
-  // ===== Info Box (white box top-right) =====
-  const boxX = 330, boxY = 18, boxW = 520, boxH = 200;
-  ctx.save();
-  ctx.shadowColor = 'rgba(0,0,0,0.25)';
-  ctx.shadowBlur = 18;
-  ctx.fillStyle = 'rgba(255,255,255,0.97)';
-  roundRect(ctx, boxX, boxY, boxW, boxH, 16);
-  ctx.fill();
-  ctx.restore();
-
-  // Red left accent bar
-  ctx.fillStyle = '#b71c1c';
-  roundRect(ctx, boxX, boxY, 6, boxH, [16, 0, 0, 16]);
-  ctx.fill();
-
-  // Name (bold red)
-  ctx.font = 'bold 34px Poppins, Arial';
-  ctx.fillStyle = '#b71c1c';
-  ctx.fillText(name, boxX + 24, boxY + 52);
-
-  // Village row
-  ctx.font = 'bold 22px "Noto Sans Telugu", Arial';
-  ctx.fillStyle = '#1a0a0a';
-  ctx.fillText('గ్రామం', boxX + 24, boxY + 96);
-  ctx.fillStyle = '#555';
-  ctx.font = '22px Arial';
-  ctx.fillText(':  ' + village, boxX + 110, boxY + 96);
-
-  // Phone row
-  ctx.font = 'bold 22px "Noto Sans Telugu", Arial';
-  ctx.fillStyle = '#1a0a0a';
-  ctx.fillText('ఫోన్ నెంబర్', boxX + 24, boxY + 136);
-  ctx.fillStyle = '#555';
-  ctx.font = '22px Arial';
-  ctx.fillText(':  ' + phone, boxX + 145, boxY + 136);
-
-  // Reunion date bottom-right
-  ctx.font = 'bold 18px Poppins, Arial';
-  ctx.fillStyle = '#7f0000';
-  const dateStr = 'REUNION DATE: 12 July 2026';
-  const dw = ctx.measureText(dateStr).width;
-  ctx.fillText(dateStr, W - dw - 18, H - 16);
-
-  // ===== Roll Number Circle =====
-  const cx = boxX + boxW - 60, cy = boxY + 60, cr = 50;
-  ctx.save();
-  ctx.beginPath();
-  ctx.arc(cx, cy, cr, 0, Math.PI * 2);
-  ctx.strokeStyle = '#7f0000';
-  ctx.lineWidth = 4;
-  ctx.stroke();
-  ctx.fillStyle = '#fff';
-  ctx.fill();
-  ctx.restore();
-
-  // Roll number text
-  const rollStr = String(roll);
-  ctx.font = `bold ${rollStr.length > 3 ? '22px' : '28px'} Poppins, Arial`;
-  ctx.fillStyle = '#7f0000';
-  ctx.textAlign = 'center';
-  ctx.fillText(rollStr, cx, cy + 10);
-  ctx.font = '12px Arial';
-  ctx.fillStyle = '#999';
-  ctx.fillText('Roll No', cx, cy + 28);
-  ctx.textAlign = 'left';
-
-  // Convert to blob
-  canvas.toBlob(b => { cardBlob = b; }, 'image/jpeg', 0.92);
-}
-
-function roundRect(ctx, x, y, w, h, r) {
-  if (typeof r === 'number') r = [r, r, r, r];
-  ctx.beginPath();
-  ctx.moveTo(x + r[0], y);
-  ctx.lineTo(x + w - r[1], y);
-  ctx.quadraticCurveTo(x + w, y, x + w, y + r[1]);
-  ctx.lineTo(x + w, y + h - r[2]);
-  ctx.quadraticCurveTo(x + w, y + h, x + w - r[2], y + h);
-  ctx.lineTo(x + r[3], y + h);
-  ctx.quadraticCurveTo(x, y + h, x, y + h - r[3]);
-  ctx.lineTo(x, y + r[0]);
-  ctx.quadraticCurveTo(x, y, x + r[0], y);
-  ctx.closePath();
-}
-
-function closeCardModal() {
-  document.getElementById('cardModal').classList.remove('show');
-}
-
-function downloadCard() {
-  const canvas = document.getElementById('regCardCanvas');
-  const link = document.createElement('a');
-  link.download = 'reunion-card.jpg';
-  link.href = canvas.toDataURL('image/jpeg', 0.92);
-  link.click();
-}
-
-async function shareCard() {
-  const canvas = document.getElementById('regCardCanvas');
-  canvas.toBlob(async (blob) => {
-    if (navigator.share && navigator.canShare && navigator.canShare({ files: [new File([blob], 'reunion-card.jpg', { type: 'image/jpeg' })] })) {
-      try {
-        await navigator.share({
-          title: 'SSC 2009-10 Get Together',
-          text: '🎉 నేను నమోదు చేసుకున్నాను! మీరు కూడా నమోదు చేసుకోండి.',
-          files: [new File([blob], 'reunion-card.jpg', { type: 'image/jpeg' })]
-        });
-      } catch(e) { downloadCard(); }
-    } else {
-      downloadCard();
-    }
-  }, 'image/jpeg', 0.92);
-}
 
 function setFilter(f, listId) {
   filterVal=f;
