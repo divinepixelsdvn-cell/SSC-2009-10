@@ -466,6 +466,30 @@
     margin-top: 5px; display: flex; flex-wrap: wrap; gap: 4px;
   }
 
+  /* ===== CONTRIBUTIONS ===== */
+  .contrib-table {
+    width: 100%; border-collapse: collapse; font-size: 12px;
+    font-family: 'Noto Sans Telugu', sans-serif;
+  }
+  .contrib-table th {
+    background: var(--red-light); color: var(--red-dark);
+    padding: 7px 8px; text-align: left; font-weight: 800;
+    border-bottom: 2px solid var(--border);
+  }
+  .contrib-table td {
+    padding: 7px 8px; border-bottom: 1px solid var(--border);
+    color: var(--text);
+  }
+  .contrib-table tr:last-child td { border-bottom: none; }
+  .contrib-table td:first-child, .contrib-table th:first-child { width: 34px; }
+  .contrib-total {
+    margin-top: 10px; text-align: right; font-size: 14px; font-weight: 900;
+    color: var(--red-dark); background: var(--yellow-light);
+    padding: 9px 14px; border-radius: 10px;
+    border: 1.5px solid var(--yellow-dark);
+    font-family: 'Noto Sans Telugu', sans-serif;
+  }
+
   
 </style>
 </head>
@@ -523,9 +547,14 @@
   <div class="landing-sub">ఇప్పుడే నమోదు చెసుకోండి</div>
   <div class="landing-btns">
     <button class="btn-register" onclick="showRegister()">📝 నమోదు చేసుకోండి</button>
+    <button class="btn-register" style="background:linear-gradient(135deg,#f9a825,#e65100);box-shadow:0 6px 20px rgba(230,81,0,0.4);" onclick="showContribute()">💰 సహకరించిన సభ్యులు</button>
     <button class="btn-already" id="listToggleBtn" onclick="toggleListAccordion()">
       <span id="listToggleLabel">👥 నమోదు జాబితా చూడండి</span>
       <span id="listToggleArrow" style="float:right;transition:transform 0.3s;">▼</span>
+    </button>
+    <button class="btn-already" id="contribToggleBtn" onclick="toggleContribAccordion()">
+      <span id="contribToggleLabel">💰 సహకరించిన సభ్యుల లిస్టు చూడండి</span>
+      <span id="contribToggleArrow" style="float:right;transition:transform 0.3s;">▼</span>
     </button>
   </div>
   <!-- Accordion list panel -->
@@ -541,6 +570,12 @@
       <div class="resp-list-title">🙋 బాధ్యత తీసుకున్నవారు</div>
       <div id="respListEntries2"><div class="loading-state" style="padding:12px;font-size:12px;">⏳ లోడ్ అవుతోంది...</div></div>
     </div>
+  </div>
+
+  <!-- Accordion contribution panel -->
+  <div id="contribAccordion" style="display:none;margin-top:12px;">
+    <button class="refresh-btn" onclick="loadData('2')">🔄 Refresh చేయండి</button>
+    <div id="contribListEntries2"><div class="loading-state" style="padding:12px;font-size:12px;">⏳ లోడ్ అవుతోంది...</div></div>
   </div>
 </div>
 
@@ -670,9 +705,41 @@
       <button class="refresh-btn" onclick="loadData()">🔄 Refresh చేయండి</button>
       <div id="entryList"><div class="loading-state">⏳ లోడ్ అవుతోంది...</div></div>
       <div class="resp-list-section">
+        <div class="resp-list-title" style="color:var(--red-dark);">💰 సహకరించిన సభ్యులు</div>
+        <div id="contribListEntries"><div class="loading-state" style="padding:12px;font-size:12px;">⏳ లోడ్ అవుతోంది...</div></div>
+      </div>
+      <div class="resp-list-section">
         <div class="resp-list-title">🙋 బాధ్యత తీసుకున్నవారు</div>
         <div id="respListEntries"><div class="loading-state" style="padding:12px;font-size:12px;">⏳ లోడ్ అవుతోంది...</div></div>
       </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== CONTRIBUTE (name + amount only) ===== -->
+<div id="contributeSection" style="display:none;">
+  <div style="max-width:520px;margin:0 auto;padding:14px 20px 0;">
+    <button class="back-btn" onclick="showLanding()">← వెనుకకు</button>
+  </div>
+  <div class="main-card">
+    <div class="landing-title" style="text-align:left;">💰 సహకారం అందించండి</div>
+    <div class="landing-sub" style="text-align:left;margin-bottom:22px;">మీ పేరు మరియు సహకార మొత్తం నమోదు చేయండి</div>
+
+    <div class="form-group">
+      <label class="form-label">పేరు <span class="req">*</span></label>
+      <input class="form-input" id="cName" type="text" placeholder="పేరు రాయండి" autocomplete="off">
+      <div class="err-msg" id="ecName">⚠️ పేరు తప్పనిసరి</div>
+    </div>
+    <div class="form-group">
+      <label class="form-label">అమౌంట్ (₹) <span class="req">*</span></label>
+      <input class="form-input" id="cAmount" type="number" min="0" placeholder="ఉదా: 500" inputmode="numeric">
+      <div class="err-msg" id="ecAmount">⚠️ అమౌంట్ తప్పనిసరి</div>
+    </div>
+
+    <button class="submit-btn" id="contribSubmitBtn" onclick="doContribSubmit()">✅ Submit చేయండి</button>
+    <div class="success-banner" id="contribSuccessBanner">
+      🎉 సహకారం విజయవంతంగా నమోదైంది!<br>
+      <span style="font-size:14px;font-weight:600;">💰 "సహకరించిన సభ్యుల లిస్టు"లో చూడవచ్చు.</span>
     </div>
   </div>
 </div>
@@ -732,33 +799,66 @@ function toggleRespMore() {
 /* ===== FEED FILE PREVIEW ===== */
 /* ===== LIGHTBOX ===== */
 /* ===== NAVIGATION ===== */
-function showLanding() {
+function closeAccordions() {
   listAccordionOpen = false;
   const panel = document.getElementById('listAccordion');
   if (panel) panel.style.display = 'none';
   const arrow = document.getElementById('listToggleArrow');
   if (arrow) arrow.style.transform = 'rotate(0deg)';
+
+  contribAccordionOpen = false;
+  const cPanel = document.getElementById('contribAccordion');
+  if (cPanel) cPanel.style.display = 'none';
+  const cArrow = document.getElementById('contribToggleArrow');
+  if (cArrow) cArrow.style.transform = 'rotate(0deg)';
+}
+function showLanding() {
+  closeAccordions();
   document.getElementById('landingSection').style.display = 'block';
   document.getElementById('appSection').classList.remove('show');
+  document.getElementById('contributeSection').style.display = 'none';
 }
 function showRegister() {
-  // Close accordion first
-  listAccordionOpen = false;
-  document.getElementById('listAccordion').style.display = 'none';
-  const arrow = document.getElementById('listToggleArrow');
-  if (arrow) arrow.style.transform = 'rotate(0deg)';
+  closeAccordions();
   document.getElementById('landingSection').style.display = 'none';
+  document.getElementById('contributeSection').style.display = 'none';
   document.getElementById('appSection').classList.add('show');
+  loadSilent();
+}
+function showContribute() {
+  closeAccordions();
+  document.getElementById('landingSection').style.display = 'none';
+  document.getElementById('appSection').classList.remove('show');
+  document.getElementById('contributeSection').style.display = 'block';
   loadSilent();
 }
 let listAccordionOpen = false;
 function toggleListAccordion() {
   listAccordionOpen = !listAccordionOpen;
+  contribAccordionOpen = false;
+  const cPanel = document.getElementById('contribAccordion');
+  if (cPanel) cPanel.style.display = 'none';
+  const cArrow = document.getElementById('contribToggleArrow');
+  if (cArrow) cArrow.style.transform = 'rotate(0deg)';
   const panel = document.getElementById('listAccordion');
   const arrow = document.getElementById('listToggleArrow');
   panel.style.display = listAccordionOpen ? 'block' : 'none';
   arrow.style.transform = listAccordionOpen ? 'rotate(180deg)' : 'rotate(0deg)';
   if (listAccordionOpen) loadData('2');
+}
+let contribAccordionOpen = false;
+function toggleContribAccordion() {
+  contribAccordionOpen = !contribAccordionOpen;
+  listAccordionOpen = false;
+  const lPanel = document.getElementById('listAccordion');
+  if (lPanel) lPanel.style.display = 'none';
+  const lArrow = document.getElementById('listToggleArrow');
+  if (lArrow) lArrow.style.transform = 'rotate(0deg)';
+  const panel = document.getElementById('contribAccordion');
+  const arrow = document.getElementById('contribToggleArrow');
+  panel.style.display = contribAccordionOpen ? 'block' : 'none';
+  arrow.style.transform = contribAccordionOpen ? 'rotate(180deg)' : 'rotate(0deg)';
+  if (contribAccordionOpen) loadData('2');
 }
 function showAlready() {
   document.getElementById('landingSection').style.display = 'none';
@@ -788,11 +888,13 @@ async function loadSilent() {
     updateStats();
   } catch(e) {}
 }
+function isContribution(e) { return e.entryType === 'contribution' || (!e.village && e.amount); }
 function updateStats() {
-  const total  = allData.length;
-  const coming = allData.filter(e => isYes(e.coming)).length;
+  const regData = allData.filter(e => !isContribution(e));
+  const total  = regData.length;
+  const coming = regData.filter(e => isYes(e.coming)).length;
   let guestCount = 0;
-  allData.filter(e => isYes(e.coming)).forEach(e => {
+  regData.filter(e => isYes(e.coming)).forEach(e => {
     if (e.guests) {
       const g = e.guests.trim();
       if (g && g !== 'ఒంటరిగా వస్తాను' && g !== 'ఎవరూ లేరు') {
@@ -819,9 +921,9 @@ function isYes(val) { return String(val||'').trim().toLowerCase() === 'yes'; }
 function isNo(val)  { return String(val||'').trim().toLowerCase() === 'no';  }
 
 function renderList() {
-  let list = allData;
-  if (filterVal==='yes') list = allData.filter(e=>isYes(e.coming));
-  if (filterVal==='no')  list = allData.filter(e=>isNo(e.coming));
+  let list = allData.filter(e => !isContribution(e));
+  if (filterVal==='yes') list = list.filter(e=>isYes(e.coming));
+  if (filterVal==='no')  list = list.filter(e=>isNo(e.coming));
   const html = list.length===0
     ? '<div class="empty-state"><div style="font-size:44px;margin-bottom:10px">📋</div>ఇంకా ఎవరూ నమోదు చేసుకోలేదు</div>'
     : list.map((e,i)=>`
@@ -844,6 +946,7 @@ function renderList() {
     const el=document.getElementById(id); if(el) el.innerHTML=html;
   });
   renderRespList();
+  renderContributions();
 }
 function renderRespList() {
   const withResp = allData.filter(e => e.responsibility && e.responsibility.trim());
@@ -876,6 +979,31 @@ function renderRespList() {
       </div>
     </div>`).join('');
 
+  if(el1) el1.innerHTML = html;
+  if(el2) el2.innerHTML = html;
+}
+function renderContributions() {
+  const withAmt = allData.filter(e => isContribution(e) && e.amount && parseFloat(e.amount) > 0);
+  const el1 = document.getElementById('contribListEntries');
+  const el2 = document.getElementById('contribListEntries2');
+  if (!withAmt.length) {
+    const empty = '<div class="empty-state" style="padding:16px;font-size:13px;">💰 ఇంకా ఎవరూ సహకారం అందించలేదు</div>';
+    if(el1) el1.innerHTML = empty;
+    if(el2) el2.innerHTML = empty;
+    return;
+  }
+  let total = 0;
+  const rows = withAmt.map((e,i) => {
+    const amt = parseFloat(e.amount) || 0;
+    total += amt;
+    return `<tr><td>${i+1}</td><td>${esc(e.name)}</td><td>₹${amt.toLocaleString('en-IN')}</td></tr>`;
+  }).join('');
+  const html = `
+    <table class="contrib-table">
+      <thead><tr><th>S.No</th><th>పేరు</th><th>అమౌంట్</th></tr></thead>
+      <tbody>${rows}</tbody>
+    </table>
+    <div class="contrib-total">మొత్తం సహకారం: ₹${total.toLocaleString('en-IN')}</div>`;
   if(el1) el1.innerHTML = html;
   if(el2) el2.innerHTML = html;
 }
@@ -958,6 +1086,36 @@ async function doSubmit() {
     document.getElementById('reasonBox').classList.remove('show');
     document.getElementById('successBanner').classList.add('show');
     setTimeout(()=>document.getElementById('successBanner').classList.remove('show'),7000);
+  } catch(e) {
+    alert('⚠️ Network error. మళ్ళీ ప్రయత్నించండి.');
+  }
+  btn.disabled=false; btn.textContent='✅ Submit చేయండి';
+}
+
+async function doContribSubmit() {
+  const name   = document.getElementById('cName').value.trim();
+  const amount = document.getElementById('cAmount').value.trim();
+
+  ['ecName','ecAmount'].forEach(id=>document.getElementById(id).classList.remove('show'));
+  let ok=true;
+  if(!name)   {document.getElementById('ecName').classList.add('show');ok=false;}
+  if(!amount || Number(amount)<=0) {document.getElementById('ecAmount').classList.add('show');ok=false;}
+  if(!ok) return;
+
+  const btn=document.getElementById('contribSubmitBtn');
+  btn.disabled=true; btn.textContent='⏳ సేవ్ అవుతోంది...';
+  try {
+    await fetch(API,{
+      method:'POST', mode:'no-cors',
+      headers:{'Content-Type':'text/plain'},
+      body:JSON.stringify({name, amount, entryType:'contribution'})
+    });
+    await new Promise(r=>setTimeout(r,2000));
+    await loadSilent();
+    document.getElementById('cName').value='';
+    document.getElementById('cAmount').value='';
+    document.getElementById('contribSuccessBanner').classList.add('show');
+    setTimeout(()=>document.getElementById('contribSuccessBanner').classList.remove('show'),7000);
   } catch(e) {
     alert('⚠️ Network error. మళ్ళీ ప్రయత్నించండి.');
   }
